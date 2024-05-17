@@ -76,6 +76,7 @@ code {
     color: #c02d76;
 }
 
-.background-img{
-    background-image:url(../images/background.jpg)
+.background-img {
+    background-image: url(../images/background.jpg);
+    height: 100%;
 }
