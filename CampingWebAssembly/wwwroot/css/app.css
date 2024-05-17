@@ -78,5 +78,6 @@ code {
 
 .background-img {
     background-image: url(../images/background.jpg);
-    height: 100%;
+    background-position: center;
+    height: 100vh;
 }
