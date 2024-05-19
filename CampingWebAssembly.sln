@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampingWebAssembly", "CampingWebAssembly\CampingWebAssembly.csproj", "{4A9A0CB7-B24A-4433-B96B-80267D77711B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{9D0C2408-8CE4-4A1E-8565-3F9AB79973A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{9D0C2408-8CE4-4A1E-8565-3F9AB79973A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{D009C538-97DC-4EA8-BD4D-FDEDDC4C2454}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9D0C2408-8CE4-4A1E-8565-3F9AB79973A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D0C2408-8CE4-4A1E-8565-3F9AB79973A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D0C2408-8CE4-4A1E-8565-3F9AB79973A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D009C538-97DC-4EA8-BD4D-FDEDDC4C2454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D009C538-97DC-4EA8-BD4D-FDEDDC4C2454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D009C538-97DC-4EA8-BD4D-FDEDDC4C2454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D009C538-97DC-4EA8-BD4D-FDEDDC4C2454}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
