@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 
 namespace DAL.Models
 {
-    public class Camping
+    public class User
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
@@ -12,17 +12,13 @@ namespace DAL.Models
         public string Name { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
-        public string Description { get; set; } = string.Empty;
+        [StringLength(30)]
+        public string Mail { get; set; } = string.Empty;
 
         [Required]
-        public Blob Portrait {  get; set; }
+        [StringLength(30)]
+        public string Password {  get; set; } = string.Empty;
 
-        [Required]
-        public float CoordX { get; set; }
-
-        [Required]
-        public float CoordY { get; set; }
-
+        public Blob Pic { get; set; }
     }
 }
