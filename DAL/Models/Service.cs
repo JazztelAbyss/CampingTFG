@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection.Metadata;
 
 namespace DAL.Models
 {
@@ -8,6 +7,6 @@ namespace DAL.Models
         public int Id { get; set; }
 
         [Required]
-        public Blob Icon { get; set; }
+        public byte[] Icon { get; set; } = new byte[Constants.MAX_IMG_SIZE];
     }
 }

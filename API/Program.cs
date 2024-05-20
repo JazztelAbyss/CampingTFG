@@ -1,3 +1,4 @@
+using DAL;
 using DAL.Interfaces;
 using DAL.Services;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //Añade el DBContext
-builder.Services.AddDbContext<DbContext>
+builder.Services.AddDbContext<DBContext>
     (options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

@@ -19,6 +19,6 @@ namespace DAL.Models
         [StringLength(30)]
         public string Password {  get; set; } = string.Empty;
 
-        public Blob Pic { get; set; }
+        public byte[] Pic { get; set; } = new byte[Constants.MAX_IMG_SIZE];
     }
 }

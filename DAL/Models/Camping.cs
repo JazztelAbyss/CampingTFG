@@ -16,7 +16,7 @@ namespace DAL.Models
         public string Description { get; set; } = string.Empty;
 
         [Required]
-        public Blob Portrait {  get; set; }
+        public byte[] Portrait {  get; set; } = new byte[Constants.MAX_IMG_SIZE];
 
         [Required]
         public float CoordX { get; set; }
