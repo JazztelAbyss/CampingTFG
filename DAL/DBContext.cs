@@ -10,6 +10,8 @@ namespace DAL
 
         public virtual DbSet<Camping> Campings { get; set; } = null!;
 
+        public virtual DbSet<Service> Services { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Camping>(entity =>
@@ -22,6 +24,14 @@ namespace DAL
                 entity.Property(c => c.CoordX).IsUnicode(false);
                 entity.Property(c => c.CoordY).IsUnicode(false);
             });
+
+            modelBuilder.Entity<Service>(entity =>
+            {
+                entity.ToTable("Services");
+                entity.Property(s => s.Id).HasColumnName("Id");
+                entity.Property(s => s.Icon).IsUnicode(false);
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

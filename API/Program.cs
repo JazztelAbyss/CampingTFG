@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DBContext>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddTransient<ICamping, CampingManager>();
+builder.Services.AddTransient<IService, ServiceManager>();
 
 var app = builder.Build();
 
