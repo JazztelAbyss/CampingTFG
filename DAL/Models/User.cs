@@ -20,5 +20,8 @@ namespace DAL.Models
         public string Password {  get; set; } = string.Empty;
 
         public byte[] Pic { get; set; } = new byte[Constants.MAX_IMG_SIZE];
+
+        [Required]
+        public bool IsResponsible { get; set; }
     }
 }

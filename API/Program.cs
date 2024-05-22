@@ -1,7 +1,6 @@
 using DAL;
 using DAL.Interfaces;
 using DAL.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
