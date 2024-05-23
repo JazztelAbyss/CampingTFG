@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DBContext>
 
 builder.Services.AddTransient<ICamping, CampingManager>();
 builder.Services.AddTransient<IService, ServiceManager>();
+builder.Services.AddTransient<IUser, UserManager>();
 
 var app = builder.Build();
 
