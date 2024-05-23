@@ -12,6 +12,8 @@ namespace DAL
 
         public virtual DbSet<Service> Services { get; set; } = null!;
 
+        public virtual DbSet<User> Users { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Camping>(entity =>
@@ -30,6 +32,17 @@ namespace DAL
                 entity.ToTable("Services");
                 entity.Property(s => s.Id).HasColumnName("Id");
                 entity.Property(s => s.Icon).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable("Users");
+                entity.Property(u => u.Id).HasColumnName("Id");
+                entity.Property(u => u.Name).HasMaxLength(20);
+                entity.Property(u => u.Mail).HasMaxLength(30);
+                entity.Property(u => u.Password).HasMaxLength(30);
+                entity.Property(u => u.Pic).IsUnicode(false);
+                entity.Property(u => u.IsResponsible).HasDefaultValue(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,5 +1,6 @@
 ﻿using BlazorBootstrap;
 using DAL.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Net.Http.Json;
 
 namespace CampingWebAssembly.Pages
@@ -17,7 +18,6 @@ namespace CampingWebAssembly.Pages
 
         private async Task Login()
         {
-            
         }
     }
 }
