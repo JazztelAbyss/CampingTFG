@@ -50,7 +50,8 @@
                 <input type="password" class="form-control" id="userPassword" @bind-value="credentials[1]" placeholder="Contraseña">
             </div>
             <br/>
-            <button type="submit" style="margin-bottom: 5px;" class="btn btn-primary">Inicia sesión</button>
+            <button type="submit" style="margin-bottom: 5px; margin-right:15px" class="btn btn-primary">Inicia sesión</button>
+            <a href="register" class="text-right" @onclick="loginModal.HideAsync" style="color:grey; font-size:12px">¿No tienes una cuenta? Regístrate</a>
             <p class="text-left" style="color: red">@warningText</p>
         </form>
     </BodyTemplate>
