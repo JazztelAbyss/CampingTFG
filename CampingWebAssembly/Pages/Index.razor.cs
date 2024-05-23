@@ -1,9 +1,13 @@
 ﻿using BlazorBootstrap;
+using DAL.Models;
+using System.Net.Http.Json;
 
 namespace CampingWebAssembly.Pages
 {
     public partial class Index
     {
+        private string[] credentials { get; set; } = new string[2];
+
         private Modal loginModal = default!;
 
         private async Task OnShowModalClick()
@@ -11,9 +15,9 @@ namespace CampingWebAssembly.Pages
             await loginModal.ShowAsync();
         }
 
-        private async Task OnHideModalClick()
+        private async Task Login()
         {
-            await loginModal.HideAsync();
+            
         }
     }
 }

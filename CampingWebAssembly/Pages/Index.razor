@@ -1,4 +1,4 @@
-﻿
+﻿@inject HttpClient http
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2 mb-1">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,15 +36,15 @@
 
 <Modal @ref="loginModal" Title="Inicia sesión">
     <BodyTemplate>
-        <form>
+        <form @onsubmit="Login">
             <div class="form-group">
                 <label for="userEmail">Correo electrónico</label>
-                <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com">               
+                <input type="email" class="form-control" id="userEmail" @bind-value="credentials[0]" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com">               
             </div>
             <br/>
             <div class="form-group">
                 <label for="userPassword">Contraseña</label>
-                <input type="password" class="form-control" id="userPassword" placeholder="Contraseña">
+                <input type="password" class="form-control" id="userPassword" @bind-value="credentials[1]" placeholder="Contraseña">
             </div>
             <br/>
             <button type="submit" class="btn btn-primary">Inicia sesión</button>
