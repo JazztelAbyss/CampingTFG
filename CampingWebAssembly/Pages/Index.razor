@@ -1,4 +1,7 @@
-﻿@inject HttpClient http
+﻿@using DAL.Models
+@inject HttpClient http
+@inject NavigationManager NavigationManager
+@inject User LoggedUser
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2 mb-1">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +50,8 @@
                 <input type="password" class="form-control" id="userPassword" @bind-value="credentials[1]" placeholder="Contraseña">
             </div>
             <br/>
-            <button type="submit" class="btn btn-primary">Inicia sesión</button>
+            <button type="submit" style="margin-bottom: 5px;" class="btn btn-primary">Inicia sesión</button>
+            <p class="text-left" style="color: red">@warningText</p>
         </form>
     </BodyTemplate>
 </Modal>

@@ -26,10 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Users\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
