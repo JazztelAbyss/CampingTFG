@@ -18,7 +18,7 @@ namespace CampingWebAssembly.Pages.Users
                 }
                 catch
                 {
-
+                    throw;
                 }
             }
         }
