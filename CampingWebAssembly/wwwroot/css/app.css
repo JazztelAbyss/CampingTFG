@@ -76,8 +76,11 @@ code {
     color: #c02d76;
 }
 
-.background-img {
-    background-image: url(../images/background.jpg);
-    background-position: center;
-    height: 100vh;
+body {
+    background-image: url(../images/Bck_tile.png);    
+    background-repeat: repeat;
+}
+
+.ariadna{
+    background-color:#d9d9d9;
 }
