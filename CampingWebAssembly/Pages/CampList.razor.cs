@@ -4,6 +4,8 @@
     {
         public bool showSearchMenu = false;
 
+        public double priceValue = 0.00;
+
         private void showSearch()
         {
             showSearchMenu = !showSearchMenu;

@@ -20,7 +20,8 @@
 				</div>
 				<div class="form-group">
 					<label for="searchPrice" class="col-form-label-lg">Precio</label>
-					<input type="range" class="form-range form-range-lg" min="0" max="250" id="searchPrice" />
+					<input type="range" class="form-range form-range-lg" min="0" max="250" step="1" id="searchPrice" @bind-value="priceValue"/>
+					<i class="mt-2"> &lt; @priceValue €</i>
 				</div>
 				<div class="form-group">
 					<label for="searchPlace" class="col-form-label-lg">Localidad</label>
@@ -48,7 +49,15 @@
 		<h3 style="color:#d9d9d9">Echa un vistazo a los campamentos disponibles</h3>
 
 		<div align="left" style="padding-left:10px; margin-bottom:20px;">
-			<Button class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d" @onclick="showSearch"><i class="bi bi-search"></i></Button>
+			<Button class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d" @onclick="showSearch">
+				@if (!showSearchMenu)
+				{
+					<i class="bi bi-search"></i>
+				}
+				else{
+					<i class="bi bi-x-lg"></i>
+				}
+			</Button>
 		</div>
 
 		<div class="grid-container">
