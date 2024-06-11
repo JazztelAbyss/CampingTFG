@@ -10,11 +10,35 @@
 </div>
 
 <div>
-	@if (true)
+	@if (showSearchMenu)
 	{
-		<div style="float:left; width:fit-content; height:100vh; background-color:#d9d9d9; margin-right:10px">
-			<h1>Tu vieja</h1>
-			<h1>Tu vieja again</h1>
+		<div style="float:left; padding:20px; width:fit-content; height:100vh; background-color:#d9d9d9; margin-right:10px">
+			<form>
+				<div class="form-group">
+					<label for="searchName" class="col-form-label-lg">Nombre</label>
+					<input type="text" class="form-control form-control-lg" id="searchName" />
+				</div>
+				<div class="form-group">
+					<label for="searchPrice" class="col-form-label-lg">Precio</label>
+					<input type="range" class="form-range form-range-lg" min="0" max="250" id="searchPrice" />
+				</div>
+				<div class="form-group">
+					<label for="searchPlace" class="col-form-label-lg">Localidad</label>
+					<select class="form-select form-select-lg">
+						<option selected>Escoge una localidad</option>
+						<option value="1">Valencia</option>
+						<option value="2">Castellón</option>
+						<option value="3">Alicante</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="searchCapacity" class="col-form-label-lg">Aforo</label>
+					<input type="range" class="form-range form-range-lg" min="0" max="100" id="searchCapacity" />
+				</div>
+				<div style="text-align:center;">
+					<button type="submit" class="btn btn-primary btn-lg" style="background-color:#e1871d; border-color:#e1871d">Buscar</button>
+				</div>				
+			</form>
 		</div>
 	}
 
@@ -24,7 +48,7 @@
 		<h3 style="color:#d9d9d9">Echa un vistazo a los campamentos disponibles</h3>
 
 		<div align="left" style="padding-left:10px; margin-bottom:20px;">
-			<Button class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d"><i class="bi bi-search"></i></Button>
+			<Button class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d" @onclick="showSearch"><i class="bi bi-search"></i></Button>
 		</div>
 
 		<div class="grid-container">
