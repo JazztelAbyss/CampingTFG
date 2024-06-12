@@ -5,6 +5,6 @@ namespace CampingWebAssembly.Pages
 {
 	public partial class Map
 	{
-		RadzenGoogleMap map;
+		private RadzenGoogleMap map;
 	}
 }
