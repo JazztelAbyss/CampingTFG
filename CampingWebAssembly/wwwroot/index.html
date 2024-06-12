@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="app.css" />
         <link rel="stylesheet" href="BlazorCarousel.styles.css" />
         <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="stylesheet" href="_content/Radzen.Blazor/css/default.css" />
         <HeadOutlet />
         <script type="text/javascript">
             function startCarousel(carouselId) {
@@ -40,8 +41,10 @@
         <Routes />
         <script src="_framework/blazor.web.js"></script>
 
-        <!-- NOTE: THE FOLLOWING LINE ADDED -->
+        <!-- BOOTSTRAP COSAS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        
 
     </body>
 
@@ -74,6 +77,14 @@
     <!-- Script para el carrusel -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="_content/Blazor.Bootstrap/blazor.bootstrap.js"></script>
+    <!-- Script para el mapa -->
+    <script type="text/javascript">
+        if (typeof Radzen === 'undefined') {
+            window.Radzen = {};
+        }
+    </script>
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDd4n4NVAR6rE4eu1WXVsWT93Vj4-XmX0"></script>
 </body>
 
 </html>
