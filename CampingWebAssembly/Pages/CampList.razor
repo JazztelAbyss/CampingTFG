@@ -1,4 +1,6 @@
 ﻿@page "/campings"
+@using DAL.Models
+@inject HttpClient Http
 
 <div style="padding:5px; padding-left:10px; background-color:#d9d9d9; margin-bottom:5px;">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -61,19 +63,23 @@
 		</div>
 
 		<div class="grid-container">
-			<div class="card mx-5" style="width: 18rem;">
-				<img src="/images/estanocheoscuratetorturalalocura.webp" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Campamento 1</h5>
-					<p class="card-text">Valencia</p>
-					<p class="card-text">60€ persona/noche</p>
-					<a href="#" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
+			@foreach(Camping c in campings)
+			{
+				<div class="card mx-5" style="width: 18rem;">
+					<img src="/images/estanocheoscuratetorturalalocura.webp" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">@c.Name</h5>
+						<p class="card-text">Valencia</p>
+						<p class="card-text">60€ persona/noche</p>
+						<a href="#" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
+					</div>
 				</div>
-			</div>
+			}			
 		</div>
-
 	</div>
 </div>
+
+
 
 
 
