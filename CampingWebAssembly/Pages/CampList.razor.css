@@ -4,13 +4,3 @@
     background-color: #2196F3;
     padding: 10px;
 }
-
-.bubble {
-    background: red;
-    color: #e1871d;
-    padding: 4px 12px;
-    position: absolute;
-    border-radius: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-}

@@ -15,19 +15,18 @@
 	@if (showSearchMenu)
 	{
 		<div style="float:left; padding:20px; width:fit-content; height:100vh; background-color:#d9d9d9; margin-right:10px">
-			<form>
+			<form @onsubmit="SearchCamps">
 				<div class="form-group">
 					<label for="searchName" class="col-form-label-lg">Nombre</label>
 					<input type="text" class="form-control form-control-lg" id="searchName" />
 				</div>
 				<div class="form-group">
-					<label for="searchPrice" class="col-form-label-lg">Precio</label>
-					<input type="range" class="form-range form-range-lg" min="0" max="250" step="1" id="searchPrice" @bind-value="priceValue"/>
-					<i class="mt-2"> &lt; @priceValue €</i>
+					<label for="searchPrice" class="col-form-label-lg">Precio</label><br/>
+					<RadzenSlider Range="true" @bind-Value=@price TValue="IEnumerable<int>" id="searchPrice" Style="width:100%; color:#e1871d" />
 				</div>
 				<div class="form-group">
 					<label for="searchPlace" class="col-form-label-lg">Localidad</label>
-					<select class="form-select form-select-lg">
+					<select class="form-select form-select-lg" @bind=@locality>
 						<option selected>Escoge una localidad</option>
 						<option value="1">Valencia</option>
 						<option value="2">Castellón</option>
@@ -69,8 +68,8 @@
 					<img src="/images/estanocheoscuratetorturalalocura.webp" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">@c.Name</h5>
-						<p class="card-text">Valencia</p>
-						<p class="card-text">60€ persona/noche</p>
+						<p class="card-text">@c.Locality</p>
+						<p class="card-text">@c.Price € persona/noche</p>
 						<a href="#" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
 					</div>
 				</div>
