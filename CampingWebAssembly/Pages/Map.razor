@@ -9,10 +9,25 @@
 
 	<h3 style="color:#d9d9d9">Encuentra tu campamento en este mapa</h3>
 
-	<RadzenGoogleMap @ref="map" Style="width:100%;height:500px" Zoom=5>
+	<div class="d-flex justify-content-around" style="margin-left:40px; margin-right:40px;">
+		<div>
+			<RadzenGoogleMap @ref="map" Style="width:500px;height:500px" Zoom=8
+							 Center=@(new GoogleMapPosition() { Lat = 39.46975, Lng = -0.37739 })>
 
-	</RadzenGoogleMap>
-
+			</RadzenGoogleMap>
+		</div>
+		<div class="d-flex align-items-center">
+			<div class="card mx-5" style="width: 18rem;">
+				<img src="/images/estanocheoscuratetorturalalocura.webp" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Jijija</h5>
+					<p class="card-text">Valencia</p>
+					<p class="card-text">60€ persona/noche</p>
+					<a href="#" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
