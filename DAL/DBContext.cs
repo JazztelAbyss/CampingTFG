@@ -25,6 +25,9 @@ namespace DAL
                 entity.Property(c => c.Portrait).IsUnicode(false);
                 entity.Property(c => c.CoordX).IsUnicode(false);
                 entity.Property(c => c.CoordY).IsUnicode(false);
+                entity.Property(c => c.Price).IsUnicode(false);
+                entity.Property(c => c.Locality).HasMaxLength(20);
+                entity.Property(c => c.Rating).IsUnicode(false);
             });
 
             modelBuilder.Entity<Service>(entity =>

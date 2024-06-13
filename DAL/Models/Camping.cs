@@ -19,10 +19,19 @@ namespace DAL.Models
         public byte[] Portrait {  get; set; } = new byte[Constants.MAX_IMG_SIZE];
 
         [Required]
-        public float CoordX { get; set; }
+        public double CoordX { get; set; }
 
         [Required]
-        public float CoordY { get; set; }
+        public double CoordY { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string Locality {  get; set; } = string.Empty;
+
+        [Required]
+        public double Price { get; set; }
+
+        public double Rating { get; set; } = 0;
 
     }
 }
