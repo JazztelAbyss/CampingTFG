@@ -1,0 +1,38 @@
+﻿@page "/campings/{Id:string}"
+@using DAL.Models
+@inject HttpClient Http
+
+<div style="padding:5px; padding-left:10px; background-color:#d9d9d9; margin-bottom:5px;">
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		<ol class="breadcrumb breadcrumb-dark">
+			<li class="breadcrumb-item"><a href="#">Página principal</a></li>
+			<li class="breadcrumb-item"><a href="campings">Campamentos</a></li>
+			<li class="breadcrum-item active" aria-current="page">@Camp!.Name</li>
+		</ol>
+	</nav>
+</div>
+
+<div>
+	<div>
+		<!-- Carrusel-->
+		<div>
+			<h3>Nombre:</h3>
+			<h3>Localidad:</h3>
+			<h3>Precio:</h3>
+			<h3>Servicios:</h3>
+			<h3>Aforo:</h3>
+			<h3>Contacto:</h3>
+			<div>
+				<!--ratings y solicitar-->
+			</div>
+		</div>
+	</div>
+	<h2>Descripción:</h2>
+	<div>
+		<a>@Camp.Description</a>
+	</div>
+	<h2>Comentarios:</h2>
+	<div>
+		<!-- Comentarios -->
+	</div>
+</div>
