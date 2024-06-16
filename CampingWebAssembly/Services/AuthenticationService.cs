@@ -6,7 +6,7 @@ namespace CampingWebAssembly.Services
 {
 	public class AuthenticationService : IAuthenticationService
 	{
-		private User? LoggedUser;
+		private User? LoggedUser = null;
 		readonly DBContext _dbContext = new();
 
 		public bool IsLogged()

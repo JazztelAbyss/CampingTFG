@@ -1,6 +1,10 @@
 ﻿@page "/register"
 
+@using CampingWebAssembly.Services.Interfaces
+
 @inject HttpClient Http
+@inject IAuthenticationService AuthService
+@inject NavigationManager Navigation
 
 <div style="text-align: center">
 	<h1>Crea tu cuenta</h1>

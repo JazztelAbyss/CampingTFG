@@ -1,7 +1,9 @@
 ﻿@using DAL.Models
+@using CampingWebAssembly.Services.Interfaces
+
 @inject HttpClient http
 @inject NavigationManager NavigationManager
-@inject User LoggedUser
+@inject IAuthenticationService AuthService
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-2 mb-1">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

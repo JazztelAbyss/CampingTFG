@@ -17,16 +17,15 @@ namespace CampingWebAssembly.Pages
             await loginModal.ShowAsync();
         }
 
-        private async Task Login()
+        private void Login()
         {
             try
             {
-                User? user = await http.GetFromJsonAsync<User>("api/User/" + credentials[0]);
-                if (user != null && user.Password.Equals(credentials[1]))
+                if (AuthService.Login(credentials[0], credentials[1]))
                 {
-                    LoggedUser = user;
-                    NavigationManager.Refresh();
+                    NavigationManager.NavigateTo("/campings");
                 }
+                else throw new Exception();
             }
             catch
             {
