@@ -1,4 +1,6 @@
 using CampingWebAssembly;
+using CampingWebAssembly.Services;
+using CampingWebAssembly.Services.Interfaces;
 using DAL.Models;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -10,7 +12,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7014") });
 builder.Services.AddBlazorBootstrap();
-builder.Services.AddSingleton<User>();
+builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
