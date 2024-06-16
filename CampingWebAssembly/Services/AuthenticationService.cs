@@ -14,9 +14,8 @@ namespace CampingWebAssembly.Services
 			return LoggedUser != null;
 		}
 
-		public bool Login(string mail, string password)
+		public bool Login(User user)
 		{
-			var user = _dbContext.Users.FirstOrDefault(u => u.Mail == mail && u.Password == password);
             if (user != null)
 			{
 				LoggedUser = user;

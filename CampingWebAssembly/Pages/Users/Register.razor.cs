@@ -15,7 +15,8 @@ namespace CampingWebAssembly.Pages.Users
                 try
                 {
                     await Http.PostAsJsonAsync("api/User", user);
-                    if(AuthService.Login(user.Mail, pswrd))
+                    var newUser = await Http.GetFromJsonAsync<User>("api/User/" + user.Mail);
+                    if(AuthService.Login(newUser))
                     {
                         Navigation.NavigateTo("/");
                     }

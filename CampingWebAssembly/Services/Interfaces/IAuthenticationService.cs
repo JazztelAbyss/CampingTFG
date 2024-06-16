@@ -4,7 +4,7 @@ namespace CampingWebAssembly.Services.Interfaces
 {
 	public interface IAuthenticationService
 	{
-		bool Login(string mail, string password);
+		bool Login(User user);
 		void Logout();
 		bool IsLogged();
 		User? GetLoggedUser();

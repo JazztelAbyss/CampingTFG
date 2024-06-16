@@ -17,12 +17,14 @@ namespace CampingWebAssembly.Pages
             await loginModal.ShowAsync();
         }
 
-        private void Login()
+        private async Task Login()
         {
             try
             {
-                if (AuthService.Login(credentials[0], credentials[1]))
+                var user = await http.GetFromJsonAsync<User>("api/User/" + credentials[0]);
+                if (user != null && user.Password == credentials[1])
                 {
+                    AuthService.Login(user);
                     NavigationManager.NavigateTo("/campings");
                 }
                 else throw new Exception();
