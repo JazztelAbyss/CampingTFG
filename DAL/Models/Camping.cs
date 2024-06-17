@@ -31,6 +31,9 @@ namespace DAL.Models
         [Required]
         public double Price { get; set; }
 
+        [Required]
+        public int Capacity { get; set; }
+
         public double Rating { get; set; } = 0;
 
     }
