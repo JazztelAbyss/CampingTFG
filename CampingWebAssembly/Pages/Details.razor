@@ -13,10 +13,13 @@
 	</nav>
 </div>
 
-<h1 style="color:#d9d9d9">@Camp?.Name</h1>
+<div style="text-align:center">
+	<h1 style="color:#d9d9d9">@Camp?.Name</h1>
+</div>
+
 
 <div>
-	<div>
+	<div style="vertical-align:middle;">
         <div id="@carouselName" class="carousel slide" data-ride="carousel" style="width:50%; padding:10px; display:inline-block;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -41,23 +44,23 @@
                 </div>
             </div>
         </div>
-		<div style="display:inline-block;">
-			<h3 style="color:#000000">Nombre:</h3><h3 style="color:#d9d9d9"> @Camp?.Name</h3><br />
-			<h3 style="color:#000000">Localidad:</h3><h3 style="color:#d9d9d9"> @Camp?.Locality</h3><br />
-			<h3 style="color:#000000">Precio:</h3><h3 style="color:#d9d9d9"> @Camp?.Price</h3><br />
-			<h3 style="color:#000000">Servicios:</h3><br />
-			<h3 style="color:#000000">Aforo:</h3><br />
-			<h3 style="color:#000000">Contacto:</h3><br />
+		<div style="display:inline-block; height:100%;">
+			<h2 style="color:#000000">Nombre:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Name</h2></h2>
+			<h2 style="color:#000000">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
+			<h2 style="color:#000000">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
+			<h2 style="color:#000000">Servicios:&nbsp;&nbsp;&nbsp;</h2>
+			<h2 style="color:#000000">Aforo&nbsp;&nbsp;&nbsp;:</h2>
+			<h2 style="color:#000000">Contacto:&nbsp;&nbsp;&nbsp;</h2>
 			<div>
 				<!--ratings y solicitar-->
 			</div>
 		</div>
 	</div>
-	<h2>Descripción:</h2>
+	<h2 style="color:#000000">Descripción:</h2>
 	<div>
-		<a>@Camp?.Description</a>
+		<a style="color:#d9d9d9">@Camp?.Description</a>
 	</div>
-	<h2>Comentarios:</h2>
+	<h2 style="color:#000000">Comentarios:</h2>
 	<div>
 		<!-- Comentarios -->
 	</div>
