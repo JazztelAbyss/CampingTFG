@@ -26,12 +26,25 @@
 				</div>
 				<div class="form-group">
 					<label for="searchPlace" class="col-form-label-lg">Localidad</label>
-					<select class="form-select form-select-lg" @bind=@locality>
+					<select id="searchPlace" class="form-select form-select-lg" @bind=@locality>
 						<option selected>Escoge una localidad</option>
 						<option value="1">Valencia</option>
 						<option value="2">Castellón</option>
 						<option value="3">Alicante</option>
 					</select>
+				</div>
+				<div class="form-group">
+					<label for="searchServices" class="col-form-label-lg">Servicios</label>
+					<div id="searchServices">
+
+						<img width="40" height="40" src="/images/service_icons/dinner.png"/>
+
+						<img width="40" height="40" src="/images/service_icons/beds.png" />
+
+						<img width="40" height="40" src="/images/service_icons/pool.png" />
+
+					</div>
+					
 				</div>
 				<div class="form-group">
 					<label for="searchCapacity" class="col-form-label-lg">Aforo</label>
