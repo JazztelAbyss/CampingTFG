@@ -8,7 +8,7 @@
 		<ol class="breadcrumb breadcrumb-dark">
 			<li class="breadcrumb-item"><a href="#">Página principal</a></li>
 			<li class="breadcrumb-item"><a href="campings">Campamentos</a></li>
-			<li class="breadcrum-item active" aria-current="page">@Camp?.Name</li>
+			<li class="breadcrumb-item active" aria-current="page">@Camp?.Name</li>
 		</ol>
 	</nav>
 </div>
@@ -45,23 +45,25 @@
             </div>
         </div>
 		<div style="display:inline-block; height:100%;">
-			<h2 style="color:#000000">Nombre:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Name</h2></h2>
-			<h2 style="color:#000000">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
-			<h2 style="color:#000000">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
-			<h2 style="color:#000000">Servicios:&nbsp;&nbsp;&nbsp;</h2>
-			<h2 style="color:#000000">Aforo&nbsp;&nbsp;&nbsp;:</h2>
-			<h2 style="color:#000000">Contacto:&nbsp;&nbsp;&nbsp;</h2>
+			<h2 style="color:#e1871d">Nombre:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Name</h2></h2>
+			<h2 style="color:#e1871d">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
+			<h2 style="color:#e1871d">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
+			<h2 style="color:#e1871d">Servicios:&nbsp;&nbsp;&nbsp;</h2>
+			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;</h2>
+			<h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;</h2>
 			<div>
 				<!--ratings y solicitar-->
 			</div>
 		</div>
 	</div>
-	<h2 style="color:#000000">Descripción:</h2>
-	<div>
-		<a style="color:#d9d9d9">@Camp?.Description</a>
-	</div>
-	<h2 style="color:#000000">Comentarios:</h2>
-	<div>
-		<!-- Comentarios -->
+	<div style="margin-left:20px;">
+		<h2 style="color:#e1871d">Descripción:</h2>
+		<div>
+			<p style="color:#d9d9d9; font-size:medium">@Camp?.Description</p>
+		</div>
+		<h2 style="color:#e1871d">Comentarios:</h2>
+		<div>
+			<!-- Comentarios -->
+		</div>
 	</div>
 </div>
