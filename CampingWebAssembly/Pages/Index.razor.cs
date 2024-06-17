@@ -25,6 +25,7 @@ namespace CampingWebAssembly.Pages
                 if (user != null && user.Password == credentials[1])
                 {
                     AuthService.Login(user);
+                    await loginModal.HideAsync();
                     NavigationManager.NavigateTo("/campings");
                 }
                 else throw new Exception();
