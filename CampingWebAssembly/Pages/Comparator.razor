@@ -6,4 +6,42 @@
 	<h1 style="color:#d9d9d9">Comparador de campamentos</h1>
 
 	<h3 style="color:#d9d9d9">Diferencia dos campamentos</h3>
+
+	<div style="padding-left:50px; padding-right:50px;">
+		<div style="display:inline-block; text-align:center; float:left">
+			<h1 style="color:#d9d9d9">Campamento a comparar</h1>
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" />
+			@foreach(Camping c in campings)
+			{
+				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px">
+					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left" />
+					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px;">
+						<h3 style="color:#e1871d">@c.Name</h3>
+						<p style="color:#e1871d">@c.Locality</p>
+					</div>
+					<div style="display:inline-block">
+						<input class="form-check-input" type="radio" name="campingList1" id="@c.Id" value="@c.Name" />
+					</div>		
+				</div>
+			}
+		</div>
+		<Button class="btn btn-lg btn-primary" style="background-color:#e1871d; border-color:#e1871d">Buscar</Button>
+		<div style="display:inline-block; text-align:center; float:right">
+			<h1 style="color:#d9d9d9">Comparar con</h1>
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" />
+			@foreach (Camping c in campings)
+			{
+				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px;">
+					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left" />
+					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px;">
+						<h3 style="color:#e1871d">@c.Name</h3>
+						<p style="color:#e1871d">@c.Locality</p>
+					</div>
+					<div style="display:inline-block;">
+						<input class="form-check-input" type="radio" name="campingList2" id="@c.Id" value="@c.Name" />
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 </div>
