@@ -29,17 +29,20 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="d-flex justify-content-center">
-                        <img class="d-block w-50" src="/images/unovecositasydicemmm.jpg" alt="First slide">
+						@if(Camp != null)
+						{
+							<img class="d-block w-75" src="data:image/png;base64,@Convert.ToBase64String(Camp.Portrait)" alt="First slide">
+						}					
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="d-flex justify-content-center">
-                        <img class="d-block w-50" src="/images/unovecositasydicemmm.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="/images/unovecositasydicemmm.jpg" alt="Second slide">
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="d-flex justify-content-center">
-                        <img class="d-block w-50" src="/images/unovecositasydicemmm.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="/images/unovecositasydicemmm.jpg" alt="Third slide">
                     </div>
                 </div>
             </div>
@@ -51,7 +54,7 @@
 			<h2 style="color:#e1871d">Servicios:&nbsp;&nbsp;&nbsp;</h2>
 			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Capacity personas</h2></h2>
 			<h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;</h2>
-			<div>nv
+			<div>
 				<!--ratings y solicitar-->
 			</div>
 		</div>

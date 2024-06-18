@@ -14,6 +14,8 @@ namespace DAL
 
         public virtual DbSet<User> Users { get; set; } = null!;
 
+        public virtual DbSet<Comment> Comments { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Camping>(entity =>
@@ -47,6 +49,14 @@ namespace DAL
                 entity.Property(u => u.Password).HasMaxLength(30);
                 entity.Property(u => u.Pic).IsUnicode(false);
                 entity.Property(u => u.IsResponsible).HasDefaultValue(false);
+            });
+
+            modelBuilder.Entity<Comment>(entity =>
+            {
+                entity.ToTable("Comments");
+                entity.HasKey(c => new { c.UserId, c.CampingId });
+                entity.Property(u => u.Content).IsUnicode(false);
+                entity.Property(u => u.Ratings).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);
