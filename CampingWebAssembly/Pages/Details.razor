@@ -3,6 +3,19 @@
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime;
 
+<style>
+    .star {
+        font-size: 5vh;
+        cursor: pointer;
+        color: #d9d9d9;
+    }
+
+    .rated {
+        color: #e1871d;
+    }
+
+</style>
+
 <div style="padding:5px; padding-left:10px; background-color:#d9d9d9; margin-bottom:5px;">
 	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 		<ol class="breadcrumb breadcrumb-dark">
@@ -55,7 +68,26 @@
 			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Capacity personas</h2></h2>
 			<h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;</h2>
 			<div>
-				<!--ratings y solicitar-->
+                <span onclick="gfg(1)"
+                      class="star">
+                    ★
+                </span>
+                <span onclick="gfg(2)"
+                      class="star">
+                    ★
+                </span>
+                <span onclick="gfg(3)"
+                      class="star">
+                    ★
+                </span>
+                <span onclick="gfg(4)"
+                      class="star">
+                    ★
+                </span>
+                <span onclick="gfg(5)"
+                      class="star">
+                    ★
+                </span>
 			</div>
 		</div>
 	</div>
