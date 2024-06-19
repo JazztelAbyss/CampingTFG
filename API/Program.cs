@@ -28,6 +28,7 @@ builder.Services.AddTransient<ICamping, CampingManager>();
 builder.Services.AddTransient<IService, ServiceManager>();
 builder.Services.AddTransient<IUser, UserManager>();
 builder.Services.AddTransient<IComment, CommentManager>();
+builder.Services.AddTransient<IRequest, RequestManager>();
 
 var app = builder.Build();
 

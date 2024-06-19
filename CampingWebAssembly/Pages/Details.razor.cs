@@ -3,7 +3,6 @@ using DAL.Models;
 using System.Net.Http.Json;
 using Microsoft.JSInterop;
 using BlazorBootstrap;
-using System.Net.Mail;
 
 namespace CampingWebAssembly.Pages
 {
@@ -16,12 +15,15 @@ namespace CampingWebAssembly.Pages
 
         private Modal requestModal = default!;
 
-		public DateTime? requested_start { get; set; }
-        public DateTime? requested_end { get; set; }
+		public DateTime requested_start { get; set; } = DateTime.Now;
+		public DateTime requested_end { get; set; } = DateTime.Now;
+
+		public User? loggedUser { get; set; } 
 
         protected override async Task OnInitializedAsync()
 		{
 			await GetCamping();
+			loggedUser = AuthService.GetLoggedUser();
 		}
 
 		protected async Task GetCamping()
@@ -35,24 +37,19 @@ namespace CampingWebAssembly.Pages
             await JsRuntime.InvokeVoidAsync("startCarousel", args); // NOTE: call JavaScript function with the ID of the carousel
         }
 
-		protected void Request()
+		protected async Task Request()
 		{
 			try
 			{
-				using (MailMessage mail=new MailMessage())
+				Request request = new Request()
 				{
-					mail.From = new MailAddress("maicolapimaps@gmail.com");
-					mail.To.Add("misape575@gmail.com");
-					mail.Subject = "Reserva campamento";
-					mail.Body = "Usted e gei";
+					UserId = loggedUser!.Id,
+					ResponsibleId = "string",
+					Start = requested_start,
+					End = requested_end
+				};
 
-					using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-					{
-						smtp.Credentials = new System.Net.NetworkCredential("maicolapimaps@gmail.com", "");
-						smtp.EnableSsl = true;
-						smtp.Send(mail);
-					}
-				}
+				await Http.PostAsJsonAsync("api/Request", request);
 			}
 			catch (Exception)
 			{
@@ -66,3 +63,20 @@ namespace CampingWebAssembly.Pages
         }
     }
 }
+
+/*
+ * using (MailMessage mail=new MailMessage())
+				{
+					mail.From = new MailAddress("maicolapimaps@gmail.com");
+					mail.To.Add("misape575@gmail.com");
+					mail.Subject = "Reserva campamento";
+					mail.Body = "Usted e gei";
+
+					using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+					{
+						smtp.Credentials = new System.Net.NetworkCredential("maicolapimaps@gmail.com", "");
+						smtp.EnableSsl = true;
+						smtp.Send(mail);
+					}
+				}
+*/

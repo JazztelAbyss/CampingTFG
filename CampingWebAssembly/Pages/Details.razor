@@ -1,7 +1,10 @@
 ﻿@page "/campings/{Id}"
 @using DAL.Models
+@using CampingWebAssembly.Services.Interfaces
+
 @inject HttpClient Http
 @inject IJSRuntime JsRuntime;
+@inject IAuthenticationService AuthService
 
 <style>
     .star {
