@@ -1,10 +1,6 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Services
 {
@@ -19,27 +15,73 @@ namespace DAL.Services
         }
         public void AddRequest(Request request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.Requests.Add(request);
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public void ChangeRequest(string userId, string responsibleId)
+        public void ChangeRequest(Request request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.Entry(request).State = EntityState.Modified;
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public List<Request> GetRequests()
         {
-            throw new NotImplementedException();
+            try 
+            {
+                return _dbContext.Requests.ToList();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         public List<Request> GetResponsibleRequests(string responsibleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _dbContext.Requests.Where(r => r.ResponsibleId == responsibleId).ToList();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
-        public void RemoveRequest(Request request)
+        public void RemoveRequest(string userId, string responsibleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Request? r = _dbContext.Requests.Find(userId, responsibleId);
+                if(r != null)
+                {
+                    _dbContext.Requests.Remove(r);
+                    _dbContext.SaveChanges();
+                }
+                else
+                {
+                    throw new ArgumentNullException();
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
