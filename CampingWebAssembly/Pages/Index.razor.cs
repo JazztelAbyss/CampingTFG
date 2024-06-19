@@ -12,6 +12,8 @@ namespace CampingWebAssembly.Pages
 
         private Modal loginModal = default!;
 
+        private User? LoggedUser { get; set; }
+
         private async Task OnShowModalClick()
         {
             await loginModal.ShowAsync();
@@ -25,6 +27,7 @@ namespace CampingWebAssembly.Pages
                 if (user != null && user.Password == credentials[1])
                 {
                     AuthService.Login(user);
+                    LoggedUser = user;
                     await loginModal.HideAsync();
                     NavigationManager.NavigateTo("/campings");
                 }

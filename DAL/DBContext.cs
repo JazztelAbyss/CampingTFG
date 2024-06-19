@@ -33,6 +33,7 @@ namespace DAL
                 entity.Property(c => c.Locality).HasMaxLength(20);
                 entity.Property(c => c.Rating).IsUnicode(false);
                 entity.Property(c => c.Capacity).IsUnicode(false);
+                entity.Property(c => c.ResponsibleId).IsUnicode(false);
             });
 
             modelBuilder.Entity<Service>(entity =>

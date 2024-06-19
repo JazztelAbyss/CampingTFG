@@ -32,6 +32,14 @@
                     <i class="bi bi-exclude d-inline"> Comparar</i>
                 </a>
             </li>
+            @if(LoggedUser != null && LoggedUser.IsResponsible)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="comparator">
+                        <i class="bi bi-bookmark-fill d-inline"> Reservas</i>
+                    </a>
+                </li>
+            }
         </ul>
         <div class="form-inline ms-auto">
             <button class="btn btn-outline-success my-2 my-sm-0" @onclick="OnShowModalClick">Inicia sesión</button>

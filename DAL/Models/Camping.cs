@@ -36,5 +36,8 @@ namespace DAL.Models
 
         public double Rating { get; set; } = 0;
 
+        [Required]
+        public string ResponsibleId { get; set; } = string.Empty;
+
     }
 }
