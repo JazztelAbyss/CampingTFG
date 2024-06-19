@@ -18,12 +18,15 @@ namespace CampingWebAssembly.Pages
 		public DateTime requested_start { get; set; } = DateTime.Now;
 		public DateTime requested_end { get; set; } = DateTime.Now;
 
-		public User? loggedUser { get; set; } 
+		public User? loggedUser { get; set; }
+
+		public bool IsntLogged { get; set; } = true;
 
         protected override async Task OnInitializedAsync()
 		{
 			await GetCamping();
 			loggedUser = AuthService.GetLoggedUser();
+			IsntLogged = loggedUser == null;
 		}
 
 		protected async Task GetCamping()
@@ -50,6 +53,7 @@ namespace CampingWebAssembly.Pages
 				};
 
 				await Http.PostAsJsonAsync("api/Request", request);
+				await requestModal.HideAsync();
 			}
 			catch (Exception)
 			{
