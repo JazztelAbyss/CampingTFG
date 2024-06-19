@@ -85,9 +85,11 @@
                     ★
                 </span>
                 <span onclick="gfg(5)"
-                      class="star">
+                      class="star"
+                      style="margin-right:30px">
                     ★
                 </span>
+                <Button class="btn btn-lg btn-primary" @onclick="OnShowModalClick" style="background-color:#e1871d; border-color:#e1871d; display:inline-block;">Solicitar</Button>
 			</div>
 		</div>
 	</div>
@@ -102,3 +104,19 @@
 		</div>
 	</div>
 </div>
+
+<Modal @ref="requestModal" Title="Selecciona las fechas">
+    <BodyTemplate>
+        <form @onsubmit="Request">
+            <RadzenStack>
+                <RadzenLabel Text="Fecha de llegada" Component="DatePickerStart" Style="margin-right: 8px; vertical-align: middle;" />
+                <RadzenDatePicker @bind-Value=@requested_start Name="DatePickerStart" DateFormat="dd/MM/yyyy" ShowCalendarWeek />
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenLabel Text="Fecha de fin" Component="DatePickerEnd" Style="margin-right: 8px; vertical-align: middle;" />
+                <RadzenDatePicker @bind-Value=@requested_end Name="DatePickerEnd" DateFormat="dd/MM/yyyy" ShowCalendarWeek /> <br />
+            </RadzenStack>            
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+        </form>
+    </BodyTemplate>
+</Modal>
