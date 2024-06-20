@@ -11,6 +11,8 @@ namespace CampingWebAssembly.Pages
 		[Parameter]
 		public string? Id { get; set; }
 		public Camping? Camp { get; set; }
+		public string OwnerMail { get; set; } = string.Empty;
+
         const string carouselName = "carouselExampleIndicators"; // NOTE: the ID of the carousel
 
         private Modal requestModal = default!;
@@ -32,6 +34,11 @@ namespace CampingWebAssembly.Pages
 		protected async Task GetCamping()
 		{
 			Camp = await Http.GetFromJsonAsync<Camping>("api/Camping/" + Id);
+			if(Camp != null)
+			{
+                var owner = await Http.GetFromJsonAsync<User>("api/User/" + Camp.ResponsibleId);
+				OwnerMail = owner!.Mail;
+            }			
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

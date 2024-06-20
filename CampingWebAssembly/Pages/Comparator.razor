@@ -57,12 +57,18 @@
 
 <Modal @ref="comparationModal" Title="Resultados">
 	<BodyTemplate>
-		<div style="display:inline-block">
-			<a>Um</a>
-		</div>
-		<div class="vr" style="display:inline-block"></div>
-		<div style="display:inline-block">
-			<a>What the sigma?</a>
-		</div>
+		<div style="text-align:center">
+			<div style="display:inline-block; width:40%; float:left">
+				<h4>@camping1!.Name</h4>
+				<a>@camping1!.Price €</a><br />
+				<a>@camping1!.Capacity personas</a>
+			</div>
+			<div class="vr" style="display:inline-block"></div>
+			<div style="display:inline-block; width:40%; float:right">
+				<h4>@camping2!.Name</h4>
+				<a>@camping2!.Price €</a><br />
+				<a>@camping2!.Capacity personas</a>
+			</div>
+		</div>		
 	</BodyTemplate>
 </Modal>
