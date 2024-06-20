@@ -20,12 +20,21 @@
 						<p style="color:#e1871d">@c.Locality</p>
 					</div>
 					<div style="display:inline-block">
-						<input class="form-check-input" type="radio" name="campingList1" id="@c.Id" value="@c.Name" />
+						<input class="form-check-input" type="radio" name="campingList1" id="@c.Id" @onclick="() => CheckCamping(true, c)"/>
 					</div>		
 				</div>
 			}
 		</div>
-		<Button class="btn btn-lg btn-primary" style="background-color:#e1871d; border-color:#e1871d; transform: translateY(600%);" @onclick="OnShowModalClick">Comparar</Button>
+
+		@if(camping1 == null || camping2 == null)
+		{
+			<Button class="btn btn-lg btn-primary" disabled style="background-color:#e1871d; border-color:#e1871d; transform: translateY(600%);" @onclick="OnShowModalClick">Comparar</Button>
+		}
+		else
+		{
+			<Button class="btn btn-lg btn-primary" style="background-color:#e1871d; border-color:#e1871d; transform: translateY(600%);" @onclick="OnShowModalClick">Comparar</Button>
+		}	
+		
 		<div style="display:inline-block; text-align:center; float:right">
 			<h1 style="color:#d9d9d9">Comparar con</h1>
 			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" />
@@ -38,7 +47,7 @@
 						<p style="color:#e1871d">@c.Locality</p>
 					</div>
 					<div style="display:inline-block;">
-						<input class="form-check-input" type="radio" name="campingList2" id="@c.Id" value="@c.Name" />
+						<input class="form-check-input" type="radio" name="campingList2" id="@c.Id" value="@c.Name" @onclick="() => CheckCamping(false, c)" />
 					</div>
 				</div>
 			}
