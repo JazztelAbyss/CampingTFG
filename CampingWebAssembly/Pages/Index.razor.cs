@@ -38,5 +38,19 @@ namespace CampingWebAssembly.Pages
                 warningText = "Nombre de usuario o contraseña incorrectos";
             }
         }
+
+        private void Logout()
+        {
+            try
+            {
+                AuthService.Logout();
+                LoggedUser = null;
+                NavigationManager.NavigateTo("/");
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
