@@ -103,7 +103,25 @@
 		</div>
 		<h2 style="color:#e1871d">Comentarios:</h2>
 		<div>
-			<!-- Comentarios -->
+            @foreach(CommentView c in DisplayComments)
+            {
+                <div class="d-flex" style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px;">
+                    <div style="display:inline-block; text-align:center; vertical-align:middle; float:left; margin-left: 10px">
+                        <h3 style="color:#e1871d">@c.UserName</h3>
+                        <span class="star"
+                                  style="margin-right:30px; color:#e1871d">
+                        @for(var i = 0; i < c.Rating; i++)
+                        {
+                                <a>★</a>
+                        }
+                        </span>
+                    </div>
+                    <div class="vr" style="display:inline-block; margin-left:10px; margin-right:10px; float:left"></div>
+                    <div style="display:inline-block; float:left;">
+                        <a>@c.Content</a>
+                    </div>
+                </div>
+            }
 		</div>
 	</div>
 </div>

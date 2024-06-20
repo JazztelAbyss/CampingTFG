@@ -11,6 +11,16 @@ namespace CampingWebAssembly.Pages
 		[Parameter]
 		public string? Id { get; set; }
 		public Camping? Camp { get; set; }
+		public List<Comment> Comments { get; set; } = new();
+
+		public class CommentView
+		{
+			public string UserName { get; set; } = string.Empty;
+			public int Rating { get; set; }
+			public string Content { get; set; } = string.Empty;
+		}
+		public List<CommentView> DisplayComments { get; set; } = new();
+
 		public string OwnerMail { get; set; } = string.Empty;
 
         const string carouselName = "carouselExampleIndicators"; // NOTE: the ID of the carousel
@@ -27,6 +37,7 @@ namespace CampingWebAssembly.Pages
         protected override async Task OnInitializedAsync()
 		{
 			await GetCamping();
+			
 			loggedUser = AuthService.GetLoggedUser();
 			IsntLogged = loggedUser == null;
 		}
@@ -38,7 +49,32 @@ namespace CampingWebAssembly.Pages
 			{
                 var owner = await Http.GetFromJsonAsync<User>("api/User/" + Camp.ResponsibleId);
 				OwnerMail = owner!.Mail;
+                await GetComments();
             }			
+		}
+
+		protected async Task GetComments()
+		{
+			Comments = await Http.GetFromJsonAsync<List<Comment>>("api/Comment/" + Camp.Id);
+            foreach (var comment in Comments)
+            {
+                DisplayComments.Add(new CommentView
+                {
+                    UserName = await GetUserName(comment.UserId),
+                    Rating = comment.Ratings,
+                    Content = comment.Content ?? ""
+                });
+            }
+        }
+
+		protected async Task<string> GetUserName(string userId)
+		{
+			var user = await Http.GetFromJsonAsync<User>("api/User/" + userId);
+			if (user != null)
+			{
+				return user.Name;
+			}
+			else return "";
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
