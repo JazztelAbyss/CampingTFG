@@ -10,6 +10,7 @@ namespace CampingWebAssembly.Pages
 
 		public class RequestCard
 		{
+			public int RequestRef { get; set; }
 			public string UserMail = string.Empty;
 			public DateTime Start = DateTime.Now;
 			public DateTime End = DateTime.Now;
@@ -17,6 +18,7 @@ namespace CampingWebAssembly.Pages
 		}
 
 		public List<RequestCard> DisplayRequests { get; set; } = new();
+		public List<RequestCard> AcceptedRequests { get; set; } = new();
 
 		protected override async Task OnInitializedAsync()
 		{
@@ -25,7 +27,10 @@ namespace CampingWebAssembly.Pages
 			{
 				Requests = await Http.GetFromJsonAsync<List<Request>>("api/Request");
 				Requests = Requests.FindAll(r => r.ResponsibleId == LoggedUser.Id);
-				if(Requests.Count > 0) { await GetDependencies(Requests); }
+				if(Requests.Count > 0) 
+				{
+					await GetDependencies(Requests);
+				}
 			}
 		}
 
@@ -53,14 +58,62 @@ namespace CampingWebAssembly.Pages
 		{
 			foreach (var request in requests)
 			{
-				DisplayRequests.Add(new RequestCard
+				if(request.Status == "Pendiente")
 				{
-					UserMail = await GetUserMail(request.UserId),
-					Start = request.Start,
-					End = request.End,
-					Image = await GetCampingImage(request.CampingId)
-				});
+					DisplayRequests.Add(new RequestCard
+					{
+						RequestRef = Requests.IndexOf(request),
+						UserMail = await GetUserMail(request.UserId),
+						Start = request.Start,
+						End = request.End,
+						Image = await GetCampingImage(request.CampingId)
+					});
+				}
+				else if(request.Status == "Aceptada")
+				{
+					AcceptedRequests.Add(new RequestCard
+					{
+						RequestRef = Requests.IndexOf(request),
+						UserMail = await GetUserMail(request.UserId),
+						Start = request.Start,
+						End = request.End,
+						Image = await GetCampingImage(request.CampingId)
+					});
+				}
 			}
+		}
+
+		protected async Task AcceptRequest(int reference)
+		{
+			var request = Requests.ElementAt(reference);
+			request.Status = "Aceptada";
+			try
+			{
+				await Http.PutAsJsonAsync("api/Request", request);
+			}
+			catch
+			{
+				throw;
+			}
+			var card = DisplayRequests.Find(r => r.RequestRef == reference);
+			DisplayRequests.Remove(card);
+			AcceptedRequests.Add(card);
+		}
+
+		protected async Task RejectRequest(int reference)
+		{
+			var request = Requests.ElementAt(reference);
+			request.Status = "Rechazada";
+			try
+			{
+				await Http.PutAsJsonAsync("api/Request", request);
+			}
+			catch
+			{
+				throw;
+			}
+			var card = DisplayRequests.Find(r => r.RequestRef == reference);
+			DisplayRequests.Remove(card);
 		}
 	}
 }
