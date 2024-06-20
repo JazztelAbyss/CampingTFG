@@ -34,11 +34,11 @@ namespace DAL.Services
             }
         }
 
-        public User FindUserByMail(string email)
+        public User FindUserById(string id)
         {
             try
             {
-                User? user = _dbContext.Users.First(u => u.Mail.Equals(email));
+                User? user = _dbContext.Users.First(u => u.Id.Equals(id));
                 if (user != null)
                 {
                     return user;
@@ -51,7 +51,24 @@ namespace DAL.Services
             }
         }
 
-        public List<User> GetUsers()
+		public User FindUserByMail(string mail)
+		{
+			try
+			{
+				User? user = _dbContext.Users.First(u => u.Mail.Equals(mail));
+				if (user != null)
+				{
+					return user;
+				}
+				throw new ArgumentNullException();
+			}
+			catch
+			{
+				throw;
+			}
+		}
+
+		public List<User> GetUsers()
         {
             try
             {

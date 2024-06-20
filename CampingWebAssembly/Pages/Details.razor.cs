@@ -47,9 +47,10 @@ namespace CampingWebAssembly.Pages
 				Request request = new Request()
 				{
 					UserId = loggedUser!.Id,
-					ResponsibleId = "string",
+					ResponsibleId = Camp!.ResponsibleId,
+					CampingId = Camp!.Id,
 					Start = requested_start,
-					End = requested_end
+					End = requested_end					
 				};
 
 				await Http.PostAsJsonAsync("api/Request", request);

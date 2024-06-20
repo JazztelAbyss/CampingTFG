@@ -21,10 +21,10 @@ namespace API.Controllers
             return await Task.FromResult(_IUser.GetUsers());
         }
 
-        [HttpGet("{email}")]
-        public IActionResult GetUserByMail(string email) 
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(string id) 
         {
-            User user = _IUser.FindUserByMail(email);
+            User user = _IUser.FindUserById(id);
             if(user != null) 
             {
                 return Ok(user);
@@ -32,7 +32,18 @@ namespace API.Controllers
             return NotFound();
         }
 
-        [HttpPost]
+		[HttpGet("mail/{mail}")]
+		public IActionResult GetUserByMail(string mail)
+		{
+			User user = _IUser.FindUserByMail(mail);
+			if (user != null)
+			{
+				return Ok(user);
+			}
+			return NotFound();
+		}
+
+		[HttpPost]
         public void RegisterUser(User user)
         {
             _IUser.RegisterUser(user);

@@ -11,6 +11,9 @@ namespace DAL.Models
         public string ResponsibleId { get; set; } = string.Empty;
 
         [Required]
+        public string CampingId {  get; set; } = string.Empty;
+
+        [Required]
         public string Status { get; set; } = "Pendiente";
 
         [Required]

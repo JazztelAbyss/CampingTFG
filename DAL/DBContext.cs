@@ -50,7 +50,6 @@ namespace DAL
                 entity.Property(u => u.Name).HasMaxLength(20);
                 entity.Property(u => u.Mail).HasMaxLength(30);
                 entity.Property(u => u.Password).HasMaxLength(30);
-                entity.Property(u => u.Pic).IsUnicode(false);
                 entity.Property(u => u.IsResponsible).HasDefaultValue(false);
             });
 
@@ -66,6 +65,7 @@ namespace DAL
             {
                 entity.ToTable("Requests");
                 entity.HasKey(r => new { r.UserId, r.ResponsibleId });
+                entity.Property(r => r.CampingId).IsUnicode(false);
                 entity.Property(r => r.Status).IsUnicode(false);
                 entity.Property(r => r.Start).IsUnicode(false);
                 entity.Property(r => r.End).IsUnicode(false);

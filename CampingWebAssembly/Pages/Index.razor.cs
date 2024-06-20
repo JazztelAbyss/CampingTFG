@@ -23,7 +23,7 @@ namespace CampingWebAssembly.Pages
         {
             try
             {
-                var user = await http.GetFromJsonAsync<User>("api/User/" + credentials[0]);
+                var user = await http.GetFromJsonAsync<User>("api/User/mail/" + credentials[0]);
                 if (user != null && user.Password == credentials[1])
                 {
                     AuthService.Login(user);

@@ -14,6 +14,7 @@ namespace CampingWebAssembly.Pages.Users
             {
                 try
                 {
+                    user.IsResponsible = false;
                     await Http.PostAsJsonAsync("api/User", user);
                     var newUser = await Http.GetFromJsonAsync<User>("api/User/" + user.Mail);
                     if(AuthService.Login(newUser))
