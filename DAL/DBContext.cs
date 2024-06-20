@@ -50,7 +50,7 @@ namespace DAL
                 entity.Property(u => u.Name).HasMaxLength(20);
                 entity.Property(u => u.Mail).HasMaxLength(30);
                 entity.Property(u => u.Password).HasMaxLength(30);
-                entity.Property(u => u.IsResponsible).HasDefaultValue(false);
+                entity.Property(u => u.IsResponsible).IsUnicode(false);
             });
 
             modelBuilder.Entity<Comment>(entity =>
