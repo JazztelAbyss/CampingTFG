@@ -47,18 +47,8 @@
                     <div class="d-flex justify-content-center">
 						@if(Camp != null)
 						{
-							<img class="d-block w-75" src="data:image/png;base64,@Convert.ToBase64String(Camp.Portrait)" alt="First slide">
+							<img class="d-block w-100" src="data:image/png;base64,@Convert.ToBase64String(Camp.Portrait)" alt="First slide">
 						}					
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-center">
-                        <img class="d-block w-100" src="/images/unovecositasydicemmm.jpg" alt="Second slide">
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-center">
-                        <img class="d-block w-100" src="/images/unovecositasydicemmm.jpg" alt="Third slide">
                     </div>
                 </div>
             </div>
@@ -68,6 +58,15 @@
 			<h2 style="color:#e1871d">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
 			<h2 style="color:#e1871d">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
 			<h2 style="color:#e1871d">Servicios:&nbsp;&nbsp;&nbsp;</h2>
+            <div>
+                @foreach (Service s in Services)
+                {
+                    <div style="display:inline-block">
+                        <img width="40" height="40" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
+                    </div>
+                }
+            </div>
+            
 			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Capacity personas</h2></h2>
             <h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @OwnerMail</h2></h2>
 			<div>

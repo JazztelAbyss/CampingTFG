@@ -12,6 +12,8 @@ namespace CampingWebAssembly.Pages
 		public string? Id { get; set; }
 		public Camping? Camp { get; set; }
 		public List<Comment> Comments { get; set; } = new();
+		public List<TagHolder> Tags { get; set; } = new();
+		public List<Service> Services { get; set; } = new();
 
 		public class CommentView
 		{
@@ -40,6 +42,8 @@ namespace CampingWebAssembly.Pages
 			
 			loggedUser = AuthService.GetLoggedUser();
 			IsntLogged = loggedUser == null;
+
+			await GetTagHolders();
 		}
 
 		protected async Task GetCamping()
@@ -109,6 +113,22 @@ namespace CampingWebAssembly.Pages
         {
             await requestModal.ShowAsync();
         }
+
+		private async Task GetTagHolders()
+		{
+			Tags = await Http.GetFromJsonAsync<List<TagHolder>>("api/TagHolder/" + Camp.Id);
+			if( Tags != null)
+			{
+                foreach (TagHolder tag in Tags)
+                {
+                    var service = await Http.GetFromJsonAsync<Service>("api/Service/" + tag.ServiceId.ToString());
+                    if (service != null)
+                    {
+                        Services.Add(service);
+                    }
+                }
+            }			
+		}
     }
 }
 
