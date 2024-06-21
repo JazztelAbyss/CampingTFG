@@ -40,5 +40,18 @@ namespace DAL.Services
                 throw;
             }
         }
+
+        public void PostService(Service service)
+        {
+            try
+            {
+                _dbContext.Services.Add(service);
+                _dbContext.SaveChanges();
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

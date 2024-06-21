@@ -29,6 +29,7 @@ builder.Services.AddTransient<IService, ServiceManager>();
 builder.Services.AddTransient<IUser, UserManager>();
 builder.Services.AddTransient<IComment, CommentManager>();
 builder.Services.AddTransient<IRequest, RequestManager>();
+builder.Services.AddTransient<ITagHolder, TagHolderManager>();
 
 var app = builder.Build();
 

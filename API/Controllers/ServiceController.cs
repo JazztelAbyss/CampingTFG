@@ -33,5 +33,11 @@ namespace API.Controllers
             }
             return NotFound();
         }
+
+        [HttpPost]
+        public void PostService(Service service)
+        {
+            _IService.PostService(service);
+        }
     }
 }

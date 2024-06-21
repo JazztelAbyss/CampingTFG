@@ -18,6 +18,8 @@ namespace DAL
 
         public virtual DbSet<Request> Requests { get; set; } = null!;
 
+        public virtual DbSet<TagHolder> TagHolders { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Camping>(entity =>
@@ -69,6 +71,12 @@ namespace DAL
                 entity.Property(r => r.Status).IsUnicode(false);
                 entity.Property(r => r.Start).IsUnicode(false);
                 entity.Property(r => r.End).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TagHolder>(entity =>
+            {
+                entity.ToTable("TagHolders");
+                entity.HasKey(t => new { t.CampingId, t.ServiceId });
             });
 
             OnModelCreatingPartial(modelBuilder);

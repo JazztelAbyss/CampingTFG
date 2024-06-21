@@ -6,5 +6,6 @@ namespace DAL.Interfaces
     {
         public List<Service> GetServices();
         public Service GetService(int id);
+        public void PostService(Service service);
     }
 }
