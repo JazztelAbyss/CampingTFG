@@ -1,5 +1,8 @@
 ﻿@page "/map"
 
+@using DAL.Models
+
+@inject HttpClient Http
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
 
 <PageTitle>Mapa</PageTitle>
@@ -12,21 +15,33 @@
 	<div class="d-flex justify-content-around" style="margin-left:40px; margin-right:40px;">
 		<div>
 			<RadzenGoogleMap @ref="map" Style="width:500px;height:500px" Zoom=8
-							 Center=@(new GoogleMapPosition() { Lat = 39.46975, Lng = -0.37739 })>
-
+							 Center=@(new GoogleMapPosition() { Lat = 39.46975, Lng = -0.37739 }) MarkerClick="OnMarkerClick">
+				<Markers>
+					@foreach(Camping c in Campings)
+					{
+						<RadzenGoogleMapMarker Title="@c.Id"
+											   Label="@c.Name"
+											   Position="@(new GoogleMapPosition()
+											   {
+													Lat = c.CoordY,
+													Lng = c.CoordX
+											   })"/>
+					}
+				</Markers>
 			</RadzenGoogleMap>
 		</div>
-		<div class="d-flex align-items-center">
-			<div class="card mx-5" style="width: 18rem;">
-				<img src="/images/estanocheoscuratetorturalalocura.webp" class="card-img-top" alt="...">
+		@if(SelectedCamping != null)
+		{
+			<div class="card mx-5" style="width: 18rem; margin-bottom:10px;">
+				<img src="data:image/png;base64,@Convert.ToBase64String(SelectedCamping.Portrait)" class="card-img-top" alt="...">
 				<div class="card-body">
-					<h5 class="card-title">Jijija</h5>
-					<p class="card-text">Valencia</p>
-					<p class="card-text">60€ persona/noche</p>
-					<a href="#" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
+					<h5 class="card-title">@SelectedCamping.Name</h5>
+					<p class="card-text">@SelectedCamping.Locality</p>
+					<p class="card-text">@SelectedCamping.Price € persona/noche</p>
+					<a href="campings/@SelectedCamping.Id" class="btn btn-primary align-middle" style="background-color:#e1871d; border-color:#e1871d">Ver más</a>
 				</div>
 			</div>
-		</div>
+		}
 	</div>
 </div>
 
