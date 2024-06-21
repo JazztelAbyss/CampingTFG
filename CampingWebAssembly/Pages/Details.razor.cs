@@ -15,6 +15,8 @@ namespace CampingWebAssembly.Pages
 		public List<TagHolder> Tags { get; set; } = new();
 		public List<Service> Services { get; set; } = new();
 
+		public Comment UserComment { get; set; } = new();
+
 		public class CommentView
 		{
 			public string UserName { get; set; } = string.Empty;
@@ -28,8 +30,9 @@ namespace CampingWebAssembly.Pages
         const string carouselName = "carouselExampleIndicators"; // NOTE: the ID of the carousel
 
         private Modal requestModal = default!;
+        private Modal commentModal = default!;
 
-		public DateTime requested_start { get; set; } = DateTime.Now;
+        public DateTime requested_start { get; set; } = DateTime.Now;
 		public DateTime requested_end { get; set; } = DateTime.Now;
 
 		public User? loggedUser { get; set; }
@@ -41,8 +44,12 @@ namespace CampingWebAssembly.Pages
 			await GetCamping();
 			
 			loggedUser = AuthService.GetLoggedUser();
-			IsntLogged = loggedUser == null;
+			if(loggedUser != null)
+			{
+				UserComment.UserId = loggedUser.Id;
+			}
 
+			IsntLogged = loggedUser == null;
 			await GetTagHolders();
 		}
 
@@ -53,6 +60,7 @@ namespace CampingWebAssembly.Pages
 			{
                 var owner = await Http.GetFromJsonAsync<User>("api/User/" + Camp.ResponsibleId);
 				OwnerMail = owner!.Mail;
+				UserComment.CampingId = Camp.Id;
                 await GetComments();
             }			
 		}
@@ -109,9 +117,25 @@ namespace CampingWebAssembly.Pages
 			}
 		}
 
-        private async Task OnShowModalClick()
+		protected async Task WriteComment()
+		{
+			try
+			{
+				await Http.PostAsJsonAsync("api/Comment", UserComment);
+			}
+			catch
+			{
+				throw;
+			}
+		}
+
+        private async Task OnShowRequestClick()
         {
             await requestModal.ShowAsync();
+        }
+		private async Task OnShowCommentClick()
+        {
+            await commentModal.ShowAsync();
         }
 
 		private async Task GetTagHolders()

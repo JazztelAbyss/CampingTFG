@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-		<div style="display:inline-block; height:100%;">
+		<div style="display:inline-block; height:100%; margin-left:30px">
 			<h2 style="color:#e1871d">Nombre:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Name</h2></h2>
 			<h2 style="color:#e1871d">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
 			<h2 style="color:#e1871d">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
@@ -91,7 +91,7 @@
                       style="margin-right:30px">
                     ★
                 </span>
-                <Button class="btn btn-lg btn-primary" @onclick="OnShowModalClick" disabled="@IsntLogged" style="background-color:#e1871d; border-color:#e1871d; display:inline-block;">Solicitar</Button>
+                <Button class="btn btn-lg btn-primary" @onclick="OnShowRequestClick" disabled="@IsntLogged" style="background-color:#e1871d; border-color:#e1871d; display:inline-block;">Solicitar</Button>
 			</div>
 		</div>
 	</div>
@@ -100,7 +100,11 @@
 		<div>
 			<p style="color:#d9d9d9; font-size:medium">@Camp?.Description</p>
 		</div>
-		<h2 style="color:#e1871d">Comentarios:</h2>
+        <div style="text-align:left">
+            <h2 style="color:#e1871d; margin-right:15px; display:inline-block">Comentarios:</h2>
+            <Button class="btn btn-primary" @onclick="OnShowCommentClick" disabled="@IsntLogged" style="background-color:#e1871d; border-color:#e1871d; display:inline-block;"><i class="bi bi-chat-left-fill" style="color:#d9d9d9"></i></Button>
+        </div>
+		
 		<div>
             @foreach(CommentView c in DisplayComments)
             {
@@ -137,6 +141,22 @@
                 <RadzenDatePicker @bind-Value=@requested_end Name="DatePickerEnd" DateFormat="dd/MM/yyyy" ShowCalendarWeek /> <br />
             </RadzenStack>            
             <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Modal @ref="commentModal" Title="Escribe un comentario">
+    <BodyTemplate>
+        <form @onsubmit="WriteComment">
+            <div class="form-group">
+                <label for="content">Dinos tu opinión</label>
+                <textarea class="form-control" id="content" rows="3" @bind="UserComment.Content"/>
+            </div>
+            <div class="form-group">
+                <label for="rating">Puntua este campamento</label>
+                <input type="number" id="rating" min="1" max="5" @bind="UserComment.Ratings"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar comentario</button>
         </form>
     </BodyTemplate>
 </Modal>
