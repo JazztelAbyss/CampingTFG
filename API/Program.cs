@@ -30,6 +30,7 @@ builder.Services.AddTransient<IUser, UserManager>();
 builder.Services.AddTransient<IComment, CommentManager>();
 builder.Services.AddTransient<IRequest, RequestManager>();
 builder.Services.AddTransient<ITagHolder, TagHolderManager>();
+builder.Services.AddTransient<IImageCamping, ImageCampingManager>();
 
 var app = builder.Build();
 

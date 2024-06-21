@@ -14,6 +14,7 @@ namespace CampingWebAssembly.Pages
 		public List<Comment> Comments { get; set; } = new();
 		public List<TagHolder> Tags { get; set; } = new();
 		public List<Service> Services { get; set; } = new();
+		public List<ImageCamping> Images {  get; set; } = new();
 
 		public Comment UserComment { get; set; } = new();
 
@@ -62,6 +63,7 @@ namespace CampingWebAssembly.Pages
 				OwnerMail = owner!.Mail;
 				UserComment.CampingId = Camp.Id;
                 await GetComments();
+				await GetImages();
             }			
 		}
 
@@ -87,6 +89,11 @@ namespace CampingWebAssembly.Pages
 				return user.Name;
 			}
 			else return "";
+		}
+
+		protected async Task GetImages()
+		{
+			Images = await Http.GetFromJsonAsync<List<ImageCamping>>("api/ImageCamping/" + Camp!.Id);
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

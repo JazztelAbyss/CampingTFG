@@ -20,6 +20,8 @@ namespace DAL
 
         public virtual DbSet<TagHolder> TagHolders { get; set; } = null!;
 
+        public virtual DbSet<ImageCamping> ImageCamping { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Camping>(entity =>
@@ -77,6 +79,11 @@ namespace DAL
             {
                 entity.ToTable("TagHolders");
                 entity.HasKey(t => new { t.CampingId, t.ServiceId });
+            });
+
+            modelBuilder.Entity<ImageCamping>(entity =>
+            {
+                entity.ToTable("ImagesCamping");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -39,8 +39,10 @@
         <div id="@carouselName" class="carousel slide" data-ride="carousel" style="width:50%; padding:10px; display:inline-block;">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                @for(var i = 1; i == Images.Count; i++)
+                {
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+                }
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -48,9 +50,17 @@
 						@if(Camp != null)
 						{
 							<img class="d-block w-100" src="data:image/png;base64,@Convert.ToBase64String(Camp.Portrait)" alt="First slide">
-						}					
+						}
                     </div>
                 </div>
+                @foreach (ImageCamping i in Images)
+                {
+                    <div class="carousel-item">
+                        <div class="d-flex justify-content-center" style="display:inline-block">
+                            <img class="d-block w-100" src="data:image/png;base64,@Convert.ToBase64String(i.Image)" alt="">
+                        </div>
+                    </div>
+                }
             </div>
         </div>
 		<div style="display:inline-block; height:100%; margin-left:30px">
