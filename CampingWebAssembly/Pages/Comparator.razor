@@ -10,17 +10,18 @@
 	<div style="padding-left:50px; padding-right:50px;">
 		<div style="display:inline-block; text-align:center; float:left">
 			<h1 style="color:#d9d9d9">Campamento a comparar</h1>
-			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" />
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" />
 			@foreach(Camping c in campings)
 			{
-				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px">
-					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left" />
-					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px;">
+				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px; border-radius:3px">
+					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left; border-top-left-radius:3px; border-bottom-left-radius:3px" />
+					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:25px;">
 						<h3 style="color:#e1871d">@c.Name</h3>
 						<p style="color:#e1871d">@c.Locality</p>
 					</div>
-					<div style="display:inline-block">
-						<input class="form-check-input" type="radio" name="campingList1" id="@c.Id" @onclick="() => CheckCamping(true, c)"/>
+					<div style="display:inline-block; margin-top:30px; margin-right:30px; float:right">
+						<input class="btn-check" type="radio" name="campingList1" id="@c.Id" @onclick="() => CheckCamping(true, c)"/>
+						<label class=" btn btn-secondary" for="@c.Id"><i class="bi bi-check-lg"></i></label>
 					</div>		
 				</div>
 			}
@@ -37,17 +38,18 @@
 		
 		<div style="display:inline-block; text-align:center; float:right">
 			<h1 style="color:#d9d9d9">Comparar con</h1>
-			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" />
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" />
 			@foreach (Camping c in campings)
 			{
-				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px;">
-					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left" />
-					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px;">
+				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px; border-radius:3px">
+					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left; border-top-left-radius:3px; border-bottom-left-radius:3px" />
+					<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:25px;">
 						<h3 style="color:#e1871d">@c.Name</h3>
 						<p style="color:#e1871d">@c.Locality</p>
 					</div>
-					<div style="display:inline-block;">
-						<input class="form-check-input" type="radio" name="campingList2" id="@c.Id" value="@c.Name" @onclick="() => CheckCamping(false, c)" />
+					<div style="display:inline-block; margin-top:30px; margin-right:30px; float:right">
+						<input class="btn-check" type="radio" name="campingList2" id="@c.Id 2" value="@c.Name" @onclick="() => CheckCamping(false, c)" />
+						<label class=" btn btn-secondary" for="@c.Id 2"><i class="bi bi-check-lg"></i></label>
 					</div>
 				</div>
 			}
