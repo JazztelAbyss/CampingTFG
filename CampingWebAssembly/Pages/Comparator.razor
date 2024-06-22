@@ -26,7 +26,7 @@
 			}
 		</div>
 
-		@if(camping1 == null || camping2 == null)
+		@if(camping1 == null || camping2 == null || camping1.Id == camping2.Id)
 		{
 			<Button class="btn btn-lg btn-primary" disabled style="background-color:#e1871d; border-color:#e1871d; transform: translateY(600%);" @onclick="OnShowModalClick">Comparar</Button>
 		}
@@ -61,12 +61,28 @@
 			<div style="display:inline-block; width:40%; float:left">
 				<h4>@camping1!.Name</h4>
 				<a>@camping1!.Price €</a><br />
+				<div style="display:inline-block;">
+					@foreach (Service s in Camping1Has)
+					{
+						<div style="display:inline-block; margin-left:3px; margin-right:3px">
+							<img width="40" height="40" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
+						</div>
+					}
+				</div>
 				<a>@camping1!.Capacity personas</a>
 			</div>
 			<div class="vr" style="display:inline-block"></div>
 			<div style="display:inline-block; width:40%; float:right">
 				<h4>@camping2!.Name</h4>
 				<a>@camping2!.Price €</a><br />
+				<div style="display:inline-block;">
+					@foreach (Service s in Camping2Has)
+					{
+						<div style="display:inline-block; margin-left:3px; margin-right:3px">
+							<img width="40" height="40" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
+						</div>
+					}
+				</div>
 				<a>@camping2!.Capacity personas</a>
 			</div>
 		</div>		

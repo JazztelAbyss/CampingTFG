@@ -67,16 +67,16 @@
 			<h2 style="color:#e1871d">Nombre:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Name</h2></h2>
 			<h2 style="color:#e1871d">Localidad:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Locality</h2></h2>
 			<h2 style="color:#e1871d">Precio:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Price € persona/noche</h2></h2>
-			<h2 style="color:#e1871d">Servicios:&nbsp;&nbsp;&nbsp;</h2>
-            <div>
-                @foreach (Service s in Services)
-                {
-                    <div style="display:inline-block">
-                        <img width="40" height="40" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
-                    </div>
-                }
-            </div>
-            
+			<h2 style="color:#e1871d">Servicios:&nbsp;&nbsp;
+                <div style="display:inline-block;">
+                    @foreach (Service s in Services)
+                    {
+                        <div style="display:inline-block; margin-left:3px; margin-right:3px">
+                            <img width="40" height="40" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
+                        </div>
+                    }
+                </div>
+            </h2>
 			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Capacity personas</h2></h2>
             <h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @OwnerMail</h2></h2>
 			<div>
@@ -118,20 +118,20 @@
 		<div>
             @foreach(CommentView c in DisplayComments)
             {
-                <div class="d-flex" style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px;">
-                    <div style="display:inline-block; text-align:center; vertical-align:middle; float:left; margin-left: 10px">
-                        <h3 style="color:#e1871d">@c.UserName</h3>
-                        <span class="star"
-                                  style="margin-right:30px; color:#e1871d">
+                <div class="d-flex" style="text-align:left; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px; border-radius:3px; ">
+                    <div style="display:inline-block; width:150px; min-width:150px; vertical-align:middle; float:left; margin-left: 10px; margin-top:25px;">
+                        <a style="color:#e1871d; font-size:15px">@c.UserName</a>
+                        <div class="star"
+                                  style="color:#e1871d;">
                         @for(var i = 0; i < c.Rating; i++)
                         {
-                                <a>★</a>
+                                <a style="font-size:25px;">★</a>
                         }
-                        </span>
+                        </div>
                     </div>
                     <div class="vr" style="display:inline-block; margin-left:10px; margin-right:10px; float:left"></div>
-                    <div style="display:inline-block; float:left;">
-                        <a>@c.Content</a>
+                    <div style="display:inline-block; float:left; margin-top:25px;">
+                        <p class="text-left">@c.Content</p>
                     </div>
                 </div>
             }

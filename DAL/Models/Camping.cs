@@ -12,7 +12,7 @@ namespace DAL.Models
         public string Name { get; set; } = string.Empty;
 
         [Required]
-        [StringLength(100)]
+        [StringLength(1000)]
         public string Description { get; set; } = string.Empty;
 
         [Required]
