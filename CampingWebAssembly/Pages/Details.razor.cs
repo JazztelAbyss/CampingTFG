@@ -3,6 +3,7 @@ using DAL.Models;
 using System.Net.Http.Json;
 using Microsoft.JSInterop;
 using BlazorBootstrap;
+using System.Net.Mail;
 
 namespace CampingWebAssembly.Pages
 {
@@ -32,6 +33,9 @@ namespace CampingWebAssembly.Pages
 
         private Modal requestModal = default!;
         private Modal commentModal = default!;
+        private Modal mailModal = default!;
+
+		private string MailContent {  get; set; } = string.Empty;
 
         public DateTime requested_start { get; set; } = DateTime.Now;
 		public DateTime requested_end { get; set; } = DateTime.Now;
@@ -136,6 +140,24 @@ namespace CampingWebAssembly.Pages
 			}
 		}
 
+		private async Task WriteMail()
+		{
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("maicolapimaps@gmail.com");
+                mail.To.Add("misape575@gmail.com");
+                mail.Subject = "Reserva campamento";
+                mail.Body = MailContent;
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new System.Net.NetworkCredential("maicolapimaps@gmail.com", "");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            }
+        }
+
         private async Task OnShowRequestClick()
         {
             await requestModal.ShowAsync();
@@ -144,6 +166,11 @@ namespace CampingWebAssembly.Pages
         {
             await commentModal.ShowAsync();
         }
+
+		private async Task OnShowMailClick()
+		{
+			await mailModal.ShowAsync();
+		}
 
 		private async Task GetTagHolders()
 		{
@@ -162,20 +189,3 @@ namespace CampingWebAssembly.Pages
 		}
     }
 }
-
-/*
- * using (MailMessage mail=new MailMessage())
-				{
-					mail.From = new MailAddress("maicolapimaps@gmail.com");
-					mail.To.Add("misape575@gmail.com");
-					mail.Subject = "Reserva campamento";
-					mail.Body = "Usted e gei";
-
-					using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-					{
-						smtp.Credentials = new System.Net.NetworkCredential("maicolapimaps@gmail.com", "");
-						smtp.EnableSsl = true;
-						smtp.Send(mail);
-					}
-				}
-*/

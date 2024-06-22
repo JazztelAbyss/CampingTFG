@@ -78,7 +78,10 @@
                 </div>
             </h2>
 			<h2 style="color:#e1871d">Aforo:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @Camp?.Capacity personas</h2></h2>
-            <h2 style="color:#e1871d">Contacto:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @OwnerMail</h2></h2>
+            <div>
+                <h2 style="color:#e1871d; display:inline-block">Contacto:&nbsp;&nbsp;&nbsp;<h2 style="color:#d9d9d9; display:inline-block"> @OwnerMail</h2></h2>
+                <Button class="btn btn-sm btn-primary" @onclick="OnShowMailClick" disabled="@IsntLogged" style="background-color:#e1871d; border-color:#e1871d; display:inline-block; margin-left:10px"><i class="bi bi-envelope-at-fill" style="color:#d9d9d9"></i></Button>
+            </div>   
 			<div>
                 <span onclick="gfg(1)"
                       class="star">
@@ -167,6 +170,18 @@
                 <input type="number" id="rating" min="1" max="5" @bind="UserComment.Ratings"/>
             </div>
             <button type="submit" class="btn btn-primary">Enviar comentario</button>
+        </form>
+    </BodyTemplate>
+</Modal>
+
+<Modal @ref="mailModal" Title="Contacta con el responsable">
+    <BodyTemplate>
+        <form @onsubmit="WriteMail">
+            <div class="form-group">
+                <label for="content">Escribe un correo</label>
+                <textarea class="form-control" id="content" rows="3" @bind="MailContent" />
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar correo</button>
         </form>
     </BodyTemplate>
 </Modal>
