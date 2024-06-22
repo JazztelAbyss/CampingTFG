@@ -60,9 +60,14 @@
 <Modal @ref="comparationModal" Title="Resultados">
 	<BodyTemplate>
 		<div class="d-flex justify-content-center" style="text-align:center">
-			<div style="display:inline-block; width:40%;">
+			<div style="display:inline-block; width:60%">
 				<h3>@camping1!.Name</h3>
-				<a style="font-size:20px;">@camping1!.Price €</a><br />
+				<a style="font-size:20px;">@camping1!.Price €</a>
+				@if (IsCheaper)
+				{
+					<a class="text-success" style="font-size:20px;">&nbsp;&nbsp;Más barato</a>
+				}
+				<br />
 				<div style="margin-top:5px; margin-bottom:5px;">
 					@foreach (Service s in Camping1Has)
 					{
@@ -70,13 +75,26 @@
 							<img width="60" height="60" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
 						</div>
 					}
+					@if (Camping1Has.Count < 1)
+					{
+						<div style="height:60px" />
+					}
 				</div>
 				<a style="font-size:20px;">@camping1!.Capacity personas</a>
+				@if (IsBigger)
+				{
+					<a class="text-success" style="font-size:20px;">&nbsp;&nbsp;Mayor aforo</a>
+				}
 			</div>
 			<div class="vr" style="display:inline-block"></div>
-			<div style="display:inline-block; width:40%;">
+			<div style="display:inline-block; width:60%">
 				<h3>@camping2!.Name</h3>
-				<a style="font-size:20px;">@camping2!.Price €</a><br />
+				<a style="font-size:20px;">@camping2!.Price €</a>
+				@if (!IsCheaper)
+				{
+					<a class="text-success" style="font-size:20px;">&nbsp;&nbsp;Más barato</a>
+				}
+				<br />
 				<div style="margin-top:5px; margin-bottom:5px;">
 					@foreach (Service s in Camping2Has)
 					{
@@ -84,8 +102,16 @@
 							<img width="60" height="60" src="data:image/png;base64,@Convert.ToBase64String(s.Icon)" />
 						</div>
 					}
+					@if(Camping2Has.Count < 1)
+					{
+						<div style="height:60px"/>
+					}
 				</div>
 				<a style="font-size:20px;">@camping2!.Capacity personas</a>
+				@if (!IsBigger)
+				{
+					<a class="text-success" style="font-size:20px;">&nbsp;&nbsp;Mayor aforo</a>
+				}
 			</div>
 		</div>		
 	</BodyTemplate>
