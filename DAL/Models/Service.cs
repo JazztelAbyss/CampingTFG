@@ -13,9 +13,14 @@ namespace DAL.Models
 		{
 			if(obj is Service service)
 			{
-				return this.Id == service.Id && this.Icon == service.Icon;
+				return Id == service.Id && Icon == service.Icon;
 			}
 			return false;
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(Id, Icon);
 		}
 	}
 }

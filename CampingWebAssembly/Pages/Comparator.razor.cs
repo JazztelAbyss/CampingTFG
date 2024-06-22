@@ -50,8 +50,8 @@ namespace CampingWebAssembly.Pages
 			IsBigger = camping1!.Capacity > camping2!.Capacity;
 			var Camp1Services = await GetServices(camping1.Id);
 			var Camp2Services = await GetServices(camping2.Id);
-			Camping1Has = Camp1Services.Except(Camp2Services).ToList();
-			Camping2Has = Camp2Services.Except(Camp1Services).ToList();
+			Camping1Has = Camp1Services.Where(s => Camp2Services.Find(s2 => s2.Id == s.Id) == null).ToList();
+			Camping2Has = Camp2Services.Where(s => Camp1Services.Find(s2 => s2.Id == s.Id) == null).ToList();
 		}
 
 		protected async Task<List<Service>> GetServices(string campingId)
