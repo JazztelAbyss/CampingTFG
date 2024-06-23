@@ -1,0 +1,51 @@
+﻿@page "/publish"
+
+@using CampingWebAssembly.Services.Interfaces
+
+@inject HttpClient Http
+@inject IAuthenticationService AuthService
+@inject NavigationManager Navigation
+
+<div style="text-align: center">
+	<h1 style="color:#d9d9d9">Publica un campamento</h1>
+
+	<form @onsubmit="CreateCamping" method="post">
+		<div class="container">
+			<div class="form-group">
+				<label for="name" style="color:#d9d9d9">Nombre</label>
+				<input type="text" class="form-control" id="name" @bind-value="camping.Name" />
+			</div>
+			<div class="form-group">
+				<label for="locality" style="color:#d9d9d9">Localidad</label>
+				<select class="form-select" id="locality" @bind="camping.Locality">
+					<option>Valencia</option>
+					<option>Castellón</option>
+					<option>Alicante</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="description" style="color:#d9d9d9">Descripción</label>
+				<textarea class="form-control" id="description" rows="3" @bind="camping.Description"/>
+			</div>
+			<div class="form-group">
+				<label for="price" style="color:#d9d9d9">Precio</label>
+				<input type="number" class="form-control" id="price" @bind-value="camping.Price"/>
+				<label for="capacity" style="color:#d9d9d9">Aforo</label>
+				<input type="number" class="form-control" id="capacity" @bind-value="camping.Capacity" />
+			</div>
+			<div class="form-group">
+				<label for="lat" style="color:#d9d9d9">Latitud</label>
+				<input type="number" class="form-control" id="lat" @bind-value="camping.CoordY" />
+				<label for="long" style="color:#d9d9d9">Longitud</label>
+				<input type="number" class="form-control" id="long" @bind-value="camping.CoordX" />
+			</div>
+			<div class="form-group">
+				<label for="images" style="color:#d9d9d9">Example file input</label>
+				<InputFile OnChange="HandleFileChange" class="form-control" multiple/>
+			</div>
+			<button type="submit" class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d">Registrarse</button>
+		</div>
+		
+	</form>
+
+</div>

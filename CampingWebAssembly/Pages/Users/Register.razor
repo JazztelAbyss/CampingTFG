@@ -27,6 +27,10 @@
 				<label for="password2" style="color:#d9d9d9">Repetir contraseña</label>
 				<input type="password" class="form-control" id="password2" @bind-value="pswrd" />
 			</div>
+			<div class="form-group">
+				<input type="checkbox" class="form-check-input" id="isResponsible" @bind-value="user.IsResponsible">
+				<label for="isResponsible" class="form-check-label" style="color:#d9d9d9">Soy responsable</label>
+			</div>
 			<button type="submit" class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d">Registrarse</button>
 		</div>
 		
