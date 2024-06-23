@@ -1,0 +1,74 @@
+﻿@page "/requestsUser"
+@using DAL.Models
+@using CampingWebAssembly.Services.Interfaces
+
+@inject HttpClient Http
+@inject IAuthenticationService AuthService
+
+<div style="padding:5px; padding-left:10px; background-color:#d9d9d9; margin-bottom:5px;">
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		<ol class="breadcrumb breadcrumb-dark">
+			<li class="breadcrumb-item"><a href="#">Página principal</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Reservas</li>
+		</ol>
+	</nav>
+</div>
+
+<div style="text-align:center">
+	<h1 style="color:#d9d9d9">Reservas</h1>
+	<h3 style="color:#d9d9d9">Consulta las solicitudes de tu campamento</h3>
+</div>
+
+<div style="text-align:center;">
+	<div style="text-align:center; display:inline-block; margin-right:30px">
+		<h3 style="color:#d9d9d9">Aceptada</h3>
+		@foreach (RequestCard r in AcceptedRequests)
+		{
+			<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px">
+				<img src="data:image/png;base64,@Convert.ToBase64String(r.Image)" width=150 height=100 style="float:left" />
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:25px;">
+					<h3 style="color:#e1871d">@r.CampingName</h3>
+					<p style="color:#e1871d">@r.Start.Date.ToShortDateString() - @r.End.Date.ToShortDateString()</p>
+				</div>
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:30px; float:right; margin-right:30px">
+					<Button class="btn btn-success">Aceptada</Button>
+				</div>
+			</div>
+		}
+	</div>
+	<div style="text-align:center; display:inline-block; margin-right:30px">
+		<h3 style="color:#d9d9d9">Pendientes</h3>
+		@foreach (RequestCard r in DisplayRequests)
+		{
+			<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px">
+				<img src="data:image/png;base64,@Convert.ToBase64String(r.Image)" width=150 height=100 style="float:left" />
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:25px;">
+					<h3 style="color:#e1871d">@r.CampingName</h3>
+					<p style="color:#e1871d">@r.Start.Date.ToShortDateString() - @r.End.Date.ToShortDateString()</p>
+				</div>
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:30px; float:right; margin-right:30px">
+					<Button class="btn btn-warning">Pendiente</Button>
+				</div>
+			</div>
+		}
+	</div>
+	<div style="text-align:center; display:inline-block;margin-left:30px">
+		<h3 style="color:#d9d9d9">Rechazadas</h3>
+		@foreach (RequestCard r in RejectedRequests)
+		{
+			<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px">
+				<img src="data:image/png;base64,@Convert.ToBase64String(r.Image)" width=150 height=100 style="float:left" />
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:25px;">
+					<h3 style="color:#e1871d">@r.CampingName</h3>
+					<p style="color:#e1871d">@r.Start.Date.ToShortDateString() - @r.End.Date.ToShortDateString()</p>
+				</div>
+				<div style="display:inline-block; text-align:left; vertical-align:middle; float:left; margin-left:15px; margin-top:30px; float:right; margin-right:30px">
+					<Button class="btn btn-danger">Rechazada</Button>
+				</div>
+			</div>
+		}
+	</div>
+</div>
+
+
+
