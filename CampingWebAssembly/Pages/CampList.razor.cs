@@ -26,7 +26,7 @@ namespace CampingWebAssembly.Pages
 		string name = "";
 		IEnumerable<int> price = [25, 75];
 		int locality = 0;
-		IEnumerable<int> people = [25, 75];
+		IEnumerable<int> people = [75, 125];
 
 		protected override async Task OnInitializedAsync()
 		{

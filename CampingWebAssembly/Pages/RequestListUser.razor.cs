@@ -81,6 +81,17 @@ namespace CampingWebAssembly.Pages
 						Image = await GetCampingImage(request.CampingId)
 					});
 				}
+				else
+				{
+					RejectedRequests.Add(new RequestCard
+					{
+						RequestRef = Requests.IndexOf(request),
+						CampingName = await GetCampingName(request.CampingId),
+						Start = request.Start,
+						End = request.End,
+						Image = await GetCampingImage(request.CampingId)
+					});
+				}
 			}
 		}
 	}

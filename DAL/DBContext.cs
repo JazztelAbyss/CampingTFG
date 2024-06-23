@@ -68,7 +68,7 @@ namespace DAL
             modelBuilder.Entity<Request>(entity =>
             {
                 entity.ToTable("Requests");
-                entity.HasKey(r => new { r.UserId, r.ResponsibleId });
+                entity.HasKey(r => new { r.UserId, r.CampingId });
                 entity.Property(r => r.CampingId).IsUnicode(false);
                 entity.Property(r => r.Status).IsUnicode(false);
                 entity.Property(r => r.Start).IsUnicode(false);
