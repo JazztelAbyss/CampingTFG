@@ -9,7 +9,15 @@ namespace CampingWebAssembly.Pages.Users
         //Usuario a crear y repetir contraseña
         private Camping camping { get; set; } = new();
         private List<byte[]> images = new List<byte[]>();
-        private async Task CreateCamping()
+        private List<Service> services = new();
+        public List<int> campServiceIds = new();
+
+		protected override async Task OnInitializedAsync()
+		{
+            services = await Http.GetFromJsonAsync<List<Service>>("api/Service");
+		}
+
+		private async Task CreateCamping()
         {
             try
             {
@@ -17,6 +25,7 @@ namespace CampingWebAssembly.Pages.Users
                 camping.ResponsibleId = AuthService.GetLoggedUser().Id;
                 images.RemoveAt(0);
                 await UploadImages(images);
+                await UploadServices(campServiceIds);
                 await Http.PostAsJsonAsync("api/Camping", camping);
                 Navigation.NavigateTo("/");
             }
@@ -39,6 +48,20 @@ namespace CampingWebAssembly.Pages.Users
                 await Http.PostAsJsonAsync("api/ImageCamping", db_image);
             }
         }
+
+        private async Task UploadServices(List<int> serviceIds)
+        {
+            foreach (var serviceId in serviceIds)
+            {
+                var tagholder = new TagHolder
+                {
+                    CampingId = camping.Id,
+                    ServiceId = serviceId,
+                };
+                await Http.PostAsJsonAsync("api/TagHolder", tagholder);
+            }
+        }
+
 
         private async Task HandleFileChange(InputFileChangeEventArgs e)
         {

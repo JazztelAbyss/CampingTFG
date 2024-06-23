@@ -1,6 +1,7 @@
 ﻿@page "/publish"
 
 @using CampingWebAssembly.Services.Interfaces
+@using DAL.Models
 
 @inject HttpClient Http
 @inject IAuthenticationService AuthService
@@ -25,25 +26,38 @@
 			</div>
 			<div class="form-group">
 				<label for="description" style="color:#d9d9d9">Descripción</label>
-				<textarea class="form-control" id="description" rows="3" @bind="camping.Description"/>
+				<textarea class="form-control" id="description" rows="3" @bind="camping.Description" />
+			</div>
+			<div>
+				<div class="form-group" style="display:inline-block; float:left; margin-right:30px">
+					<label for="price" style="color:#d9d9d9">Precio</label>
+					<input type="number" class="form-control" id="price" @bind-value="camping.Price" />
+					<label for="capacity" style="color:#d9d9d9">Aforo</label>
+					<input type="number" class="form-control" id="capacity" @bind-value="camping.Capacity" />
+				</div>
+				<div class="form-group" style="display:inline-block; float:left">
+					<label for="lat" style="color:#d9d9d9">Latitud</label>
+					<input type="number" class="form-control" id="lat" step=".01" @bind-value="camping.CoordY" />
+					<label for="long" style="color:#d9d9d9">Longitud</label>
+					<input type="number" class="form-control" id="long" step=".01" @bind-value="camping.CoordX" />
+				</div>
+				<div class="form-group" style="display:inline-block">
+					<label for="services" style="color:#d9d9d9">Servicios</label>
+					<RadzenDropDown @bind-Value="campServiceIds" Data="@services" ValueProperty="Id" Name="services"
+									Multiple=true AllowClear=true Chips=true>
+						<Template>
+							@{
+								var service = context as Service;
+							}
+							<img src="data:image/png;base64,@Convert.ToBase64String(service!.Icon)" width="40" height="40" />
+						</Template>
+					</RadzenDropDown>
+				</div>
 			</div>
 			<div class="form-group">
-				<label for="price" style="color:#d9d9d9">Precio</label>
-				<input type="number" class="form-control" id="price" @bind-value="camping.Price"/>
-				<label for="capacity" style="color:#d9d9d9">Aforo</label>
-				<input type="number" class="form-control" id="capacity" @bind-value="camping.Capacity" />
+				<InputFile OnChange="HandleFileChange" class="form-control" id="images" multiple/>
 			</div>
-			<div class="form-group">
-				<label for="lat" style="color:#d9d9d9">Latitud</label>
-				<input type="number" class="form-control" id="lat" @bind-value="camping.CoordY" />
-				<label for="long" style="color:#d9d9d9">Longitud</label>
-				<input type="number" class="form-control" id="long" @bind-value="camping.CoordX" />
-			</div>
-			<div class="form-group">
-				<label for="images" style="color:#d9d9d9">Example file input</label>
-				<InputFile OnChange="HandleFileChange" class="form-control" multiple/>
-			</div>
-			<button type="submit" class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d">Registrarse</button>
+			<button type="submit" class="btn btn-primary" style="background-color:#e1871d; border-color:#e1871d">Publicar</button>
 		</div>
 		
 	</form>
