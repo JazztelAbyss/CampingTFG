@@ -1,12 +1,14 @@
 ﻿using BlazorBootstrap;
 using DAL.Models;
+using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 
 namespace CampingWebAssembly.Pages
 {
     public partial class Comparator
     {
-        private List<Camping> campings { get; set; } = new();
+        private List<Camping> campings1 { get; set; } = new();
+		private List<Camping> campings2 { get; set; } = new();
 
         private Modal comparationModal = default!;
 
@@ -32,7 +34,8 @@ namespace CampingWebAssembly.Pages
 
 		protected async Task GetCampings()
 		{
-			campings = await Http.GetFromJsonAsync<List<Camping>>("api/Camping");
+			campings1 = await Http.GetFromJsonAsync<List<Camping>>("api/Camping");
+			campings2 = await Http.GetFromJsonAsync<List<Camping>>("api/Camping");
 		}
 
 		protected void CheckCamping(bool column, Camping c)
@@ -71,5 +74,25 @@ namespace CampingWebAssembly.Pages
             }
 			return Services;
         }
+
+		protected void ShowFirst1(ChangeEventArgs args)
+		{
+			if(args.Value != null)
+			{
+				var newFirst = campings1.First(c => c.Name.Contains((string)args.Value));
+				campings1.Remove(newFirst);
+				campings1.Insert(0, newFirst);
+			}
+		}
+
+		protected void ShowFirst2(ChangeEventArgs args)
+		{
+			if (args.Value != null)
+			{
+				var newFirst = campings2.First(c => c.Name.Contains((string)args.Value));
+				campings2.Remove(newFirst);
+				campings2.Insert(0, newFirst);
+			}
+		}
 	}
 }

@@ -10,8 +10,8 @@
 	<div style="padding-left:50px; padding-right:50px;">
 		<div style="display:inline-block; text-align:center; float:left">
 			<h1 style="color:#d9d9d9">Campamento a comparar</h1>
-			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" />
-			@foreach(Camping c in campings)
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" @onchange="ShowFirst1"/>
+			@foreach(Camping c in campings1)
 			{
 				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px; border-radius:3px">
 					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left; border-top-left-radius:3px; border-bottom-left-radius:3px" />
@@ -38,8 +38,8 @@
 		
 		<div style="display:inline-block; text-align:center; float:right">
 			<h1 style="color:#d9d9d9">Comparar con</h1>
-			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" />
-			@foreach (Camping c in campings)
+			<input type="text" class="form-control form-control-lg" style="margin-bottom:15px" placeholder="🔍 Busca por nombre" @onchange="ShowFirst2"/>
+			@foreach (Camping c in campings2)
 			{
 				<div style="text-align:center; width:500px; height:100px; background-color:#d9d9d9; margin-bottom:10px; border-radius:3px">
 					<img src="data:image/png;base64,@Convert.ToBase64String(c.Portrait)" width=150 height=100 style="float:left; border-top-left-radius:3px; border-bottom-left-radius:3px" />

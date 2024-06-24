@@ -98,7 +98,7 @@ namespace CampingWebAssembly.Pages
 		{
 			if (!name.IsNullOrEmpty())
 			{
-				var withName = filteredCampings.FindAll(x => x.Name == name);
+				var withName = filteredCampings.FindAll(x => x.Name.Contains(name));
 				filteredCampings = withName;
 			}
 		}
