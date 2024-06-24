@@ -31,7 +31,7 @@ namespace CampingWebAssembly.Pages
 		protected override async Task OnInitializedAsync()
 		{
 			await GetCampings();
-			await GetCards();
+			await GetCards(campings);
 		}
 
 		protected async Task GetCampings()
@@ -40,9 +40,10 @@ namespace CampingWebAssembly.Pages
 			filteredCampings = campings;
 		}
 
-		protected async Task GetCards()
+		protected async Task GetCards(List<Camping> campList)
 		{
-			foreach(var camping in campings)
+			CampingCards.Clear();
+			foreach(var camping in campList)
 			{
 				CampingCards.Add(new CampingCard
 				{
@@ -76,26 +77,38 @@ namespace CampingWebAssembly.Pages
             showSearchMenu = !showSearchMenu;
         }
 
-		protected void SearchCamps()
+		protected async Task SearchCamps()
 		{
-			FilterByName();
+			if (!name.IsNullOrEmpty())
+			{
+				FilterByName();
+			}
+			if(locality > 0)
+			{
+				FilterByLocality();
+			}
 			FilterByPrice();
-			FilterByLocality();
+			FilterByCapacity();
+
+
+			await GetCards(filteredCampings);
 		}
 
 		protected void FilterByName()
 		{
 			if (!name.IsNullOrEmpty())
 			{
-				filteredCampings = filteredCampings.FindAll(x => x.Name == name);
+				var withName = filteredCampings.FindAll(x => x.Name == name);
+				filteredCampings = withName;
 			}
 		}
 
 		protected void FilterByPrice()
 		{
 			filteredCampings = filteredCampings.FindAll(x =>
-			price.First() <= x.Price &&
-			x.Price <= price.Last());
+				price.First() <= x.Price &&
+				x.Price <= price.Last()
+			);
 		}
 
 		protected void FilterByLocality()
@@ -114,6 +127,14 @@ namespace CampingWebAssembly.Pages
 				default:
 					break;
 			}
+		}
+
+		protected void FilterByCapacity()
+		{
+			filteredCampings = filteredCampings.FindAll(x =>
+				people.First() <= x.Capacity &&
+				x.Capacity <= people.Last()
+			);
 		}
     }
 }

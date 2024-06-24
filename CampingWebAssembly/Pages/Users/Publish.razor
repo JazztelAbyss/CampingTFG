@@ -41,18 +41,19 @@
 					<label for="long" style="color:#d9d9d9">Longitud</label>
 					<input type="number" class="form-control" id="long" step=".01" @bind-value="camping.CoordX" />
 				</div>
-				<div class="form-group" style="display:inline-block">
-					<label for="services" style="color:#d9d9d9">Servicios</label>
-					<RadzenDropDown @bind-Value="campServiceIds" Data="@services" ValueProperty="Id" Name="services"
-									Multiple=true AllowClear=true Chips=true>
-						<Template>
-							@{
-								var service = context as Service;
-							}
-							<img src="data:image/png;base64,@Convert.ToBase64String(service!.Icon)" width="40" height="40" />
-						</Template>
-					</RadzenDropDown>
-				</div>
+			</div>
+			<br />
+			<div class="form-group">
+				<label for="services" style="color:#d9d9d9">Servicios</label>
+				<RadzenDropDown @bind-Value="campServiceIds" Data="@services" ValueProperty="Id" Name="services"
+								Multiple=true AllowClear=true Chips=true>
+					<Template>
+						@{
+							var service = context as Service;
+						}
+						<img src="data:image/png;base64,@Convert.ToBase64String(service!.Icon)" width="40" height="40" />
+					</Template>
+				</RadzenDropDown>
 			</div>
 			<div class="form-group">
 				<InputFile OnChange="HandleFileChange" class="form-control" id="images" multiple/>
