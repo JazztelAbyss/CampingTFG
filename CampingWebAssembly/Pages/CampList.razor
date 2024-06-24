@@ -22,7 +22,7 @@
 <div>
 	@if (showSearchMenu)
 	{
-		<div style="float:left; padding:20px; width:fit-content; height:100vh; background-color:#d9d9d9; margin-right:10px">
+		<div style="float:left; padding:20px; width:fit-content; height:85vh; background-color:#d9d9d9; margin-right:10px">
 			<form @onsubmit="SearchCamps">
 				<div class="form-group">
 					<label for="searchName" class="col-form-label-lg">Nombre</label>
@@ -84,7 +84,7 @@
 			</Button>
 		</div>
 
-		<div class="grid-container">
+		<div class="grid-container overflow-y-auto" style="max-height:65vh;">
 			@foreach(CampingCard c in CampingCards)
 			{
 				<div class="card mx-5" style="width: 18rem; margin-bottom:10px;">
