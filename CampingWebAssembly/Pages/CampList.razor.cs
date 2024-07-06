@@ -9,6 +9,9 @@ namespace CampingWebAssembly.Pages
         public bool showSearchMenu = false;
 		protected List<Camping> campings = new();
 		protected List<Camping> filteredCampings = new();
+		protected List<int> campServiceIds = new();
+
+		private List<Service> services = new();
 
 		public class CampingCard
 		{
@@ -18,6 +21,7 @@ namespace CampingWebAssembly.Pages
 			public double price { get; set; }
 			public List<Service> Services { get; set; } = new();
 			public string CampingId { get; set; } = string.Empty;
+
 		}
 
 		public List<CampingCard> CampingCards {  get; set; } = new();
@@ -32,6 +36,7 @@ namespace CampingWebAssembly.Pages
 		{
 			await GetCampings();
 			await GetCards(campings);
+			await GetAllServices();
 		}
 
 		protected async Task GetCampings()
@@ -70,6 +75,11 @@ namespace CampingWebAssembly.Pages
 				}
 			}
 			return services;
+		}
+
+		protected async Task GetAllServices()
+		{
+			services = await Http.GetFromJsonAsync<List<Service>>("api/Service");
 		}
 
 		private void showSearch()

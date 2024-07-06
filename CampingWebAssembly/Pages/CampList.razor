@@ -43,17 +43,16 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label for="searchServices" class="col-form-label-lg">Servicios</label>
-					<div id="searchServices">
-
-						<img width="40" height="40" src="/images/service_icons/dinner.png"/>
-
-						<img width="40" height="40" src="/images/service_icons/beds.png" />
-
-						<img width="40" height="40" src="/images/service_icons/pool.png" />
-
-					</div>
-					
+					<label for="searchServices" class="col-form-label-lg">Servicios</label><br/>
+					<RadzenDropDown @bind-Value="campServiceIds" Data="@services" ValueProperty="Id" Name="searchServices"
+									Multiple=true AllowClear=true Chips=true Style="width:100%">
+						<Template>
+							@{
+								var service = context as Service;
+							}
+							<img src="data:image/png;base64,@Convert.ToBase64String(service!.Icon)" width="40" height="40" />
+						</Template>
+					</RadzenDropDown>					
 				</div>
 				<div class="form-group">
 					<label for="searchCapacity" class="col-form-label-lg">Aforo</label>
