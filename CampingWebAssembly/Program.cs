@@ -18,5 +18,7 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+//El de los correos
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 await builder.Build().RunAsync();

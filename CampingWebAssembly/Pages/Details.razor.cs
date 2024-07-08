@@ -3,7 +3,6 @@ using DAL.Models;
 using System.Net.Http.Json;
 using Microsoft.JSInterop;
 using BlazorBootstrap;
-using System.Net.Mail;
 
 namespace CampingWebAssembly.Pages
 {
@@ -142,21 +141,8 @@ namespace CampingWebAssembly.Pages
 
 		private async Task WriteMail()
 		{
-            using (MailMessage mail = new MailMessage())
-            {
-                mail.From = new MailAddress("maicolapimaps@gmail.com");
-                mail.To.Add("misape575@gmail.com");
-                mail.Subject = "Reserva campamento";
-                mail.Body = MailContent;
-
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                {
-                    smtp.Credentials = new System.Net.NetworkCredential("maicolapimaps@gmail.com", "");
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
-            }
-        }
+			await EmailService.SendEmailAsync(MailContent);
+		}
 
         private async Task OnShowRequestClick()
         {
