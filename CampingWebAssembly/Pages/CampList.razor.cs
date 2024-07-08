@@ -99,7 +99,10 @@ namespace CampingWebAssembly.Pages
 			}
 			FilterByPrice();
 			FilterByCapacity();
-
+			if (campServiceIds.Count > 0)
+			{
+				await FilterByServices();
+			}
 
 			await GetCards(filteredCampings);
 		}
@@ -145,6 +148,19 @@ namespace CampingWebAssembly.Pages
 				people.First() <= x.Capacity &&
 				x.Capacity <= people.Last()
 			);
+		}
+
+		protected async Task FilterByServices()
+		{
+			foreach (Camping c in filteredCampings)
+			{
+				var tags = await Http.GetFromJsonAsync<List<TagHolder>>("api/TagHolder/" + c.Id);
+				var tagIds = tags!.ConvertAll(x => x.ServiceId);
+				if (!campServiceIds.All(tagIds.Contains))
+				{
+					filteredCampings.Remove(c);
+				}
+			}
 		}
     }
 }
